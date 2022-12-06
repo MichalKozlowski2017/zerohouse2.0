@@ -1,18 +1,20 @@
-import Footer from '@components/Footer/Footer';
-import Header from '@components/Header/Header';
+import Footer from '@components/Layout/Footer/Footer';
+import Header from '@components/Layout/Header/Header';
 import React from 'react';
+import { Pages } from '@typings/pages';
 
 type Props = {
   children: JSX.Element;
+  pages: Pages['pages'];
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, pages }: Props) => {
   return (
-    <>
-      <Header />
+    <main className="max-w[1920px]">
+      <Header pages={pages} />
       {children}
       <Footer />
-    </>
+    </main>
   );
 };
 
