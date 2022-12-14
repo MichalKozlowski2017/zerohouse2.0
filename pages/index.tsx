@@ -3,7 +3,6 @@ import { getClient } from '@lib/sanity';
 import { groq } from 'next-sanity';
 import { GetStaticProps } from 'next';
 import type { Page } from '@typings/page';
-import Image from 'next/image';
 import ContentWrapper from '@components/ContentWrapper/ContentWrapper';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

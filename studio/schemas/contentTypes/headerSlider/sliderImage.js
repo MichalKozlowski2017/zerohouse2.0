@@ -1,8 +1,13 @@
 export default {
-  title: 'Section Simple',
-  name: 'sectionSimple',
+  title: 'Slider Image',
+  name: 'sliderImage',
   type: 'document',
   fields: [
+    {
+      title: 'Name',
+      name: 'name',
+      type: 'string',
+    },
     {
       name: 'image',
       title: 'Image',
@@ -19,9 +24,8 @@ export default {
         {
           type: 'block',
           styles: [
-            {title: 'Title', value: 'h1'},
-            {title: 'Subtitle', value: 'h2'},
-            {title: 'Akapit', value: 'p'},
+            {title: 'Title', value: 'h3'},
+            {title: 'Subtitle', value: 'h4'},
             {title: 'CTA', value: 'cta'},
           ],
         },

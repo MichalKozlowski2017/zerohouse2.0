@@ -16,9 +16,7 @@ export default {
       rows: 5,
       type: 'text',
       validation: (Rule) =>
-        Rule.max(160).error(
-          'SEO descriptions are usually better when its below 160'
-        ),
+        Rule.max(160).error('SEO descriptions are usually better when its below 160'),
     },
     {
       name: 'keywords',
@@ -34,8 +32,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 200, // will be ignored if slugify is set
-        slugify: (input) =>
-          input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
     },
     {
@@ -50,9 +47,9 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{ type: 'headerSimple' }, { type: 'sectionSimple' }],
+          to: [{type: 'headerSimple'}, {type: 'sectionSimple'}, {type: 'headerSlider'}],
         },
       ],
     },
   ],
-};
+}

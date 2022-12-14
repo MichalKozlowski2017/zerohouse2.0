@@ -5,7 +5,6 @@ import { getClient } from '@lib/sanity';
 import { Page } from '@typings/page';
 
 const Page = ({ page }: Page) => {
-  console.log(page);
   return (
     <div>
       <Head>

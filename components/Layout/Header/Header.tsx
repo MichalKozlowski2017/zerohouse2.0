@@ -1,21 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Pages } from '@typings/pages';
+import { useRouter } from 'next/router';
+import { motion, AnimatePresence } from 'framer-motion';
+import Hamburger from 'hamburger-react';
+import Logo from '@components/Logo/Logo';
+import styles from './Header.module.scss';
 
 const Header = ({ pages }: Pages) => {
+  const [isOpen, setOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setOpen(false);
+    };
+    router.events.on('routeChangeStart', handleRouteChange);
+  }, [router.events]);
+
   return (
-    <header>
-      <div>
-        <Link href="/">Logo</Link>
-      </div>
-      <div className="bg-red-500">
-        {pages?.map((page) => (
-          <div key={page._id}>
-            <Link href={page.slug.current}>{page.title}</Link>
+    <>
+      <header
+        className={`h-[124px] w-full fixed inline-flex top-0 items-center justify-between px-9 uppercase text-base ${
+          isOpen ? 'bg-white' : 'bg-[transparent]'
+        }`}
+      >
+        <div>
+          <Link href="/">
+            <Logo color={router.pathname === '/' ? '#fff' : '#000'} />
+          </Link>
+        </div>
+        <div className="xs:hidden mobileMenu:inline-flex">
+          {pages?.map((page) => (
+            <div className="mx-[40px]" key={page._id}>
+              <Link href={page.slug.current}>{page.title}</Link>
+            </div>
+          ))}
+        </div>
+        <div className="flex mobileMenu:hidden z-50">
+          <Hamburger color="#000" rounded toggled={isOpen} toggle={setOpen} />
+        </div>
+      </header>
+      <AnimatePresence>
+        {isOpen ? (
+          <div className="fixed w-[100%] h-auto overflow-hidden mobileMenu:hidden ">
+            <motion.div
+              initial={{ y: '-100%' }}
+              animate={{ y: '0' }}
+              exit={{ y: '-100%' }}
+              transition={{
+                y: { duration: 0.3 },
+                default: { ease: 'linear' },
+              }}
+              className={`relative w-[100%] h-auto flex flex-col bg-[red] top-0 justify-center items-center  left-0 py-10`}
+            >
+              {pages?.map((page) => (
+                <div
+                  className="block my-2 text-2xl cursor-pointer"
+                  key={page._id}
+                >
+                  <Link href={`/${page.slug.current}`}>{page.title}</Link>
+                </div>
+              ))}
+            </motion.div>
           </div>
-        ))}
-      </div>
-    </header>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 };
 

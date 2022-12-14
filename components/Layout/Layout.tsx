@@ -10,7 +10,7 @@ type Props = {
 
 const Layout = ({ children, pages }: Props) => {
   return (
-    <main className="max-w[1920px]">
+    <main className="max-w-[1920px] relative mx-auto pt-[124px]">
       <Header pages={pages} />
       {children}
       <Footer />

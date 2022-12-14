@@ -2,7 +2,6 @@ export default {
   title: 'Header Simple',
   name: 'headerSimple',
   type: 'document',
-  hidden: true,
   fields: [
     {
       name: 'image',
@@ -20,13 +19,13 @@ export default {
         {
           type: 'block',
           styles: [
-            { title: 'Title', value: 'h1' },
-            { title: 'Subtitle', value: 'h2' },
-            { title: 'Akapit', value: 'p' },
-            { title: 'CTA', value: 'cta' },
+            {title: 'Title', value: 'h1'},
+            {title: 'Subtitle', value: 'h2'},
+            {title: 'Akapit', value: 'p'},
+            {title: 'CTA', value: 'cta'},
           ],
         },
       ],
     },
   ],
-};
+}
