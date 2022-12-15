@@ -13,7 +13,9 @@ module.exports = {
     screens: {
       xs: '475px',
       mobileMenu: '1200px',
-      ...defaultTheme.screens
+      ...defaultTheme.screens,
+      xl3: '1400px',
+      xl4: '1600px'
     }
   },
   variants: {

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hamburger from 'hamburger-react';
 import Logo from '@components/Logo/Logo';
-import styles from './Header.module.scss';
 
 const Header = ({ pages }: Pages) => {
   const [isOpen, setOpen] = useState(false);
@@ -21,7 +20,7 @@ const Header = ({ pages }: Pages) => {
   return (
     <>
       <header
-        className={`h-[124px] w-full fixed inline-flex top-0 items-center justify-between px-9 uppercase text-base ${
+        className={`h-[124px] w-full max-w-[1920px] fixed inline-flex z-30 top-0 items-center justify-between px-9 uppercase text-base ${
           isOpen ? 'bg-white' : 'bg-[transparent]'
         }`}
       >
@@ -30,7 +29,11 @@ const Header = ({ pages }: Pages) => {
             <Logo color={router.pathname === '/' ? '#fff' : '#000'} />
           </Link>
         </div>
-        <div className="xs:hidden mobileMenu:inline-flex">
+        <div
+          className={`hidden mobileMenu:inline-flex ${
+            router.pathname === '/' ? 'text-white' : 'text-black'
+          }`}
+        >
           {pages?.map((page) => (
             <div className="mx-[40px]" key={page._id}>
               <Link href={page.slug.current}>{page.title}</Link>
@@ -43,7 +46,7 @@ const Header = ({ pages }: Pages) => {
       </header>
       <AnimatePresence>
         {isOpen ? (
-          <div className="fixed w-[100%] h-auto overflow-hidden mobileMenu:hidden ">
+          <div className="fixed w-[100%] h-auto z-20 overflow-hidden mobileMenu:hidden ">
             <motion.div
               initial={{ y: '-100%' }}
               animate={{ y: '0' }}
