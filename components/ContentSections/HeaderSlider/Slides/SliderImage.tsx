@@ -7,8 +7,16 @@ import { PortableText } from '@portabletext/react';
 const SliderImage = ({ image, content }) => {
   const myPortableTextComponents = {
     block: {
-      h2: ({ children }) => <h2>{children}</h2>,
-      h3: ({ children }) => <h3>{children}</h3>,
+      h2: ({ children }) => (
+        <h2 className="uppercase text-white font-bold leading-[1.2] text-[2em]">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }) => (
+        <h3 className="uppercase text-white leading-[2.2] text-[1em] ">
+          {children}
+        </h3>
+      ),
       cta: ({ children }) => <div>{children}</div>,
     },
 
@@ -41,16 +49,26 @@ const SliderImage = ({ image, content }) => {
   };
 
   return (
-    <div className=" h-[250px] xs:h-[300px] sm:h-[450px] md:h-[550px] lg:h-[760px] xl:h-[860px] xl3:h-[960px] xl4:h-[1120px] relative">
-      SliderImage
+    <div className=" h-[100vh] relative">
       <Image
         priority={true}
         src={urlFor(image).url()}
-        alt="alt"
+        alt={image.alt}
         fill
         style={{ objectFit: 'cover' }}
       />
-      <div className="absolute">
+      <div
+        className="absolute xs:block bottom-[25vh] text-[16px] left-1/2 -translate-x-1/2
+        xs:bottom-[25vh] xs:text-[20px]
+        sm:bottom-[25vh] sm:text-[24px]
+        md:bottom-[25vh] md:text-[25px] md:left-[60%]
+        lg:bottom-[25vh] lg:text-[30px] lg:left-2/3
+        xl:bottom-[25vh] xl:text-[35px]
+        xl3:bottom-[25vh] xl3:text-[40px]
+        xl4:bottom-[25vh] xl4:text-[43px]
+      
+      "
+      >
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-ignore */}
         <PortableText value={content} components={myPortableTextComponents} />

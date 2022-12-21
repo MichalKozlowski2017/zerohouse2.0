@@ -14,8 +14,10 @@ module.exports = {
       xs: '475px',
       mobileMenu: '1200px',
       ...defaultTheme.screens,
-      xl3: '1400px',
-      xl4: '1600px'
+      xl2: '1380px',
+      xl3: '1500px',
+      xl4: '1650px',
+      xl5: '1800px'
     }
   },
   variants: {

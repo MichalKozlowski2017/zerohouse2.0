@@ -5,7 +5,7 @@ const Logo = ({ color }) => {
     <svg
       viewBox="0 0 201 36"
       xmlns="http://www.w3.org/2000/svg"
-      className={`w-[200px] h-auto`}
+      className={`w-[120px] md:w-[200px] h-auto`}
       style={{ fill: color }}
     >
       <g>

@@ -47,7 +47,12 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'headerSimple'}, {type: 'sectionSimple'}, {type: 'headerSlider'}],
+          to: [
+            {type: 'headerSimple'},
+            {type: 'sectionSimple'},
+            {type: 'headerSlider'},
+            {type: 'iconsSlider'},
+          ],
         },
       ],
     },

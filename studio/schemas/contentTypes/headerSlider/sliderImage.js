@@ -15,6 +15,13 @@ export default {
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt',
+        },
+      ],
     },
     {
       name: 'content',

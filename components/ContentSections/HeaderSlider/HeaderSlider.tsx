@@ -1,18 +1,18 @@
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper';
-// import { Pagination } from 'swiper';
-import { EffectFade } from 'swiper';
+import { motion } from 'framer-motion';
+import SwiperCore, { EffectFade, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+
 import SliderImage from './Slides/SliderImage';
 import SliderVideo from './Slides/SliderVideo';
 import type { headerSlide } from '@typings/headerSlide';
 
 const HeaderSlider = ({ content }) => {
+  SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
   return (
     <div className="w-full relative mt-[-124px]">
@@ -24,6 +24,10 @@ const HeaderSlider = ({ content }) => {
         effect="fade"
         spaceBetween={0}
         slidesPerView={1}
+        // autoplay={{
+        //   delay: 5000,
+        //   disableOnInteraction: false,
+        // }}
         onInit={() => {
           document
             .querySelectorAll('.slider-pagination div')[0]
@@ -66,6 +70,37 @@ const HeaderSlider = ({ content }) => {
             onClick={() => swiperRef.current?.slideTo(index)}
           ></div>
         ))}
+      </div>
+
+      <div className=" sm:block absolute bottom-[60px]  left-1/2 -translate-x-1/2 z-10 flex-col justify-center items-center">
+        <div>
+          <Image
+            src="/assets/images/scroll-icon.svg"
+            width={30}
+            height={47}
+            alt="scroll down"
+          />
+        </div>
+
+        <motion.div
+          animate={{
+            y: [0, 10, 0],
+          }}
+          transition={{
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          }}
+          className="mt-[10px]"
+        >
+          <Image
+            src="/assets/images/scroll-arr.svg"
+            width={21}
+            height={10}
+            alt="scroll down"
+            className="mx-auto"
+          />
+        </motion.div>
       </div>
     </div>
   );

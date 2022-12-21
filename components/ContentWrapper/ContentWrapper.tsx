@@ -3,6 +3,7 @@ import HeaderSimple from '@components/ContentSections/HeaderSimple/HeaderSimple'
 import SectionSimple from '@components/ContentSections/SectionSimple/SectionSimple';
 import { Block } from '@typings/block';
 import HeaderSlider from '@components/ContentSections/HeaderSlider/HeaderSlider';
+import IconsSlider from '@components/ContentSections/IconsSlider/IconsSlider';
 
 const ContentWrapper = ({ content }) => {
   return (
@@ -14,6 +15,8 @@ const ContentWrapper = ({ content }) => {
           return <SectionSimple {...block} key={block._id} />;
         } else if (block._type === 'headerSlider') {
           return <HeaderSlider {...block} key={block._id} />;
+        } else if (block._type === 'iconsSlider') {
+          return <IconsSlider {...block} key={block._id} />;
         }
       })}
     </>

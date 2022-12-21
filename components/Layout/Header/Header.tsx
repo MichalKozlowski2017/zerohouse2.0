@@ -20,7 +20,7 @@ const Header = ({ pages }: Pages) => {
   return (
     <>
       <header
-        className={`h-[124px] w-full max-w-[1920px] fixed inline-flex z-30 top-0 items-center justify-between px-9 uppercase text-base ${
+        className={`h-[70px] md:h-[124px] w-full max-w-[1920px] fixed inline-flex z-30 top-0 items-center justify-between px-4 md:px-9 uppercase text-base transition ${
           isOpen ? 'bg-white' : 'bg-[transparent]'
         }`}
       >
@@ -46,7 +46,7 @@ const Header = ({ pages }: Pages) => {
       </header>
       <AnimatePresence>
         {isOpen ? (
-          <div className="fixed w-[100%] h-auto z-20 overflow-hidden mobileMenu:hidden ">
+          <div className="fixed w-[100%] h-auto z-20 overflow-hidden mobileMenu:hidden top-[70px] md:top-[124px]">
             <motion.div
               initial={{ y: '-100%' }}
               animate={{ y: '0' }}
@@ -55,7 +55,7 @@ const Header = ({ pages }: Pages) => {
                 y: { duration: 0.3 },
                 default: { ease: 'linear' },
               }}
-              className={`relative w-[100%] h-auto flex flex-col bg-[red] top-0 justify-center items-center  left-0 py-10`}
+              className={`relative w-[100%] h-auto flex flex-col bg-white top-0 justify-center items-center  left-0 py-10`}
             >
               {pages?.map((page) => (
                 <div

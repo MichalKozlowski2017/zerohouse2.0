@@ -5,6 +5,7 @@ import sectionSimple from './contentTypes/sectionSimple'
 import headerSlider from './contentTypes/headerSlider/headerSlider'
 import sliderImage from './contentTypes/headerSlider/sliderImage'
 import sliderVideo from './contentTypes/headerSlider/sliderVideo'
+import iconsSlider from './contentTypes/iconsSlider/iconsSlider'
 
 export const schemaTypes = [
   page,
@@ -13,4 +14,5 @@ export const schemaTypes = [
   headerSlider,
   sliderImage,
   sliderVideo,
+  iconsSlider,
 ]
