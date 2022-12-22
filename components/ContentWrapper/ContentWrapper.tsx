@@ -1,9 +1,10 @@
 import React from 'react';
+import { Block } from '@typings/block';
 import HeaderSimple from '@components/ContentSections/HeaderSimple/HeaderSimple';
 import SectionSimple from '@components/ContentSections/SectionSimple/SectionSimple';
-import { Block } from '@typings/block';
 import HeaderSlider from '@components/ContentSections/HeaderSlider/HeaderSlider';
 import IconsSlider from '@components/ContentSections/IconsSlider/IconsSlider';
+import FibaroSlider from '@components/ContentSections/FibaroSlider/FibaroSlider';
 
 const ContentWrapper = ({ content }) => {
   return (
@@ -17,6 +18,8 @@ const ContentWrapper = ({ content }) => {
           return <HeaderSlider {...block} key={block._id} />;
         } else if (block._type === 'iconsSlider') {
           return <IconsSlider {...block} key={block._id} />;
+        } else if (block._type === 'fibaroSlider') {
+          return <FibaroSlider {...block} key={block._id} />;
         }
       })}
     </>

@@ -52,6 +52,7 @@ export default {
             {type: 'sectionSimple'},
             {type: 'headerSlider'},
             {type: 'iconsSlider'},
+            {type: 'fibaroSlider'},
           ],
         },
       ],

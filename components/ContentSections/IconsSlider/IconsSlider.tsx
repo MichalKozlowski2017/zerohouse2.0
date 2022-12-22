@@ -74,6 +74,7 @@ const IconsSlider = (block: Block) => {
           }}
           modules={[EffectFade]}
           effect="fade"
+          loop={true}
           autoHeight={true}
           spaceBetween={0}
           slidesPerView={1}
@@ -92,10 +93,10 @@ const IconsSlider = (block: Block) => {
               .forEach((el) => {
                 el.classList.remove('iconsSlider-active');
               });
-            swiperRef.current?.activeIndex != undefined &&
+            swiperRef.current?.realIndex != undefined &&
               document
                 .querySelectorAll('.iconsSlider-pagination div')
-                [swiperRef.current?.activeIndex].classList.add(
+                [swiperRef.current?.realIndex].classList.add(
                   'iconsSlider-active'
                 );
           }}
