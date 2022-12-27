@@ -7,15 +7,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper';
-import SwiperCore, { EffectFade, Autoplay } from 'swiper';
+import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
 
-const FibaroSlider = (block: Block) => {
+const AlternativeSlider = (block: Block) => {
+  console.log(block);
   const [mySwiper, setMySwiper] = useState({});
+  const [mySwiper2, setMySwiper2] = useState(null);
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
+  const swiperRef2 = useRef<SwiperRef>();
+
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
@@ -61,87 +65,95 @@ const FibaroSlider = (block: Block) => {
       },
     },
   };
-  return (
-    <section className="pb-[75px] relative overflow-hidden bg-[#F8F8F8]">
-      <div className="w-full xl:w-[80%] mx-auto">
-        <div className="w-full flex justify-center bg-white py-[20px] md:w-1/2 md:hidden">
-          <Image
-            src={urlFor(block.image).url()}
-            alt={block.image.alt}
-            width={138}
-            height={45}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
 
+  return (
+    <section className="relative">
+      <div
+        className="relative
+          md:left-[13vw] md:mt-[-8vw]
+          lg:left-[15vw] 
+          xl:left-[15vw]
+          xl3:left-[230px] xl3:mt-[-150px]
+          px-[40px] py-[40px]
+          md:w-[70%] md:px-[40px]
+          xl:w-[50%] xl:px-[40px] xl:py-[65px]
+          bg-white
+          z-10
+          "
+      >
         <Swiper
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
             setMySwiper(swiper);
           }}
-          modules={[EffectFade]}
-          effect="fade"
+          // modules={[EffectFade]}
+          // effect="fade"
           autoHeight={true}
           spaceBetween={0}
           slidesPerView={1}
+          speed={800}
           loop={true}
           // autoplay={{
           //   delay: 5000,
           //   disableOnInteraction: false,
           // }}
+          onSlideChange={() => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            mySwiper2 && mySwiper2.slideTo(swiperRef.current?.realIndex);
+          }}
         >
-          {block.content?.map(({ content, image }: Block) => (
-            <SwiperSlide
-              key={uuidv4()}
-              className="bg-white flex flex-col-reverse md:flex-row md:items-stretch"
-            >
-              <div
-                className="px-[40px] py-[40px]
-                md:w-[50%] md:px-[6vw]
-                xl:w-[50%] xl:px-[40px]
-              "
-              >
-                <div className="hidden  py-[20px] md:w-1/2 md:block">
-                  <Image
-                    src={urlFor(block.image).url()}
-                    alt={block.image.alt}
-                    width={138}
-                    height={45}
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <div className="mb-[40px] xl:hidden">
-                  <Arrows swiper={mySwiper} />
-                </div>
+          {block.content?.map(({ content }: Block) => (
+            <SwiperSlide key={uuidv4()} className="">
+              <div>
                 <PortableText
                   value={content}
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
                   components={myPortableTextComponents}
-                />
-              </div>
-
-              <div
-                className="relative h-[50vw] w-full
-                md:w-[50%] md:h-auto
-              "
-              >
-                <Image
-                  src={urlFor(image).url()}
-                  alt={image.alt}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                ></PortableText>
               </div>
             </SwiperSlide>
           ))}
-          <div className="hidden mb-[40px] xl:block absolute left-[37%] bottom-[34px] -translate-x-1/2 z-10">
+          <div className="">
             <Arrows swiper={mySwiper} />
           </div>
         </Swiper>
+      </div>
+      <div className="relative w-full alt-slider">
+        <div className="relative w-full ml-auto md:w-[60%] md:mt-[-15vw] lg:mt-[-9vw] xl:w-[65%] xl:mt-[-10vw] xl3:mt-[-233px]">
+          <Swiper
+            onSwiper={(swiper2) => {
+              swiperRef2.current = swiper2;
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              setMySwiper2(swiper2);
+            }}
+            autoHeight={true}
+            spaceBetween={10}
+            slidesPerView={1.2}
+            speed={800}
+            allowTouchMove={false}
+            // modules={[EffectFade]}
+            // effect="fade"
+          >
+            {block.content?.map(({ image }: Block) => (
+              <SwiperSlide key={uuidv4()} className="">
+                <div className=" h-[300px] sm:h-[400px] xl:h-[450px] xl3:h-[510px]">
+                  <Image
+                    src={urlFor(image).url()}
+                    alt={image.alt}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );
 };
 
-export default FibaroSlider;
+export default AlternativeSlider;

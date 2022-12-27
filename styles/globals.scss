@@ -11,3 +11,38 @@
 .iconsSlider-active {
   transform: scale(2);
 }
+
+
+.alt-slider {
+  .swiper-slide {
+    opacity: .25;
+    transition: opacity 0.8s;
+  }
+
+  .swiper-slide-active {
+    opacity: 1 !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .footer-logo-0 {
+    width: 178px;
+    height: 22px;
+  }
+
+  .footer-logo-1 {
+    width: 140px;
+    height: 51px;
+    transform: translateY(10px);
+  }
+
+  .footer-logo-2 {
+    width: 153px;
+    height: 52px;
+  }
+
+  .footer-logo-3 {
+    width: 196px;
+    height: 17px;
+  }
+}

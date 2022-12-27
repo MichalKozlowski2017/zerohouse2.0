@@ -53,6 +53,7 @@ export default {
             {type: 'headerSlider'},
             {type: 'iconsSlider'},
             {type: 'fibaroSlider'},
+            {type: 'alternativeSlider'},
           ],
         },
       ],

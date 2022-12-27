@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper';
-import SwiperCore, { EffectFade, Autoplay } from 'swiper';
+import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
@@ -40,9 +40,13 @@ const IconsSlider = (block: Block) => {
       "
       >
         {block.content?.map(({ image }: Block, index) => (
-          <div
+          <button
             key={uuidv4()}
-            onClick={() => swiperRef.current?.slideTo(index)}
+            data-id={index}
+            onClick={(event) => {
+              if (!(event.target instanceof HTMLButtonElement)) return;
+              swiperRef.current?.slideToLoop(Number(event.target.dataset.id));
+            }}
             className={`w-[30px] h-[40px] relative transition-transform
               xs:w-[40px] xs:h-[50px]
               md:w-[30px] md:h-[40px]
@@ -53,12 +57,12 @@ const IconsSlider = (block: Block) => {
               src={urlFor(image).url()}
               alt={image.alt}
               fill
-              sizes="(max-width: 768px) 40px,
-              (max-width: 1200px) 40px,
-              40px"
-              style={{ objectFit: 'contain' }}
+              sizes="(max-width: 768px) 200px,
+              (max-width: 1200px) 200px,
+              200px"
+              style={{ objectFit: 'contain', pointerEvents: 'none' }}
             />
-          </div>
+          </button>
         ))}
       </div>
       <div
@@ -72,30 +76,30 @@ const IconsSlider = (block: Block) => {
             swiperRef.current = swiper;
             setMySwiper(swiper);
           }}
-          modules={[EffectFade]}
-          effect="fade"
+          // modules={[EffectFade]}
+          // effect="fade"
           loop={true}
           autoHeight={true}
           spaceBetween={0}
           slidesPerView={1}
           // autoplay={{
-          //   delay: 5000,
+          //   delay: 1000,
           //   disableOnInteraction: false,
           // }}
           onInit={() => {
             document
-              .querySelectorAll('.iconsSlider-pagination div')[0]
+              .querySelectorAll('.iconsSlider-pagination button')[0]
               .classList.add('iconsSlider-active');
           }}
           onSlideChange={() => {
             document
-              .querySelectorAll('.iconsSlider-pagination div')
+              .querySelectorAll('.iconsSlider-pagination button')
               .forEach((el) => {
                 el.classList.remove('iconsSlider-active');
               });
             swiperRef.current?.realIndex != undefined &&
               document
-                .querySelectorAll('.iconsSlider-pagination div')
+                .querySelectorAll('.iconsSlider-pagination button')
                 [swiperRef.current?.realIndex].classList.add(
                   'iconsSlider-active'
                 );

@@ -1,11 +1,11 @@
 export interface Page {
-  page: {
-    _id: string;
-    slug: object;
-    excerpt: string;
-    keywords: string;
-    title: string;
+  _id: string;
+  slug: {
+    current: string;
   };
+  excerpt: string;
+  keywords: string;
+  title: string;
   pages: [];
   pageContent: object;
 }

@@ -6,7 +6,7 @@ import type { Page } from '@typings/page';
 import ContentWrapper from '@components/ContentWrapper/ContentWrapper';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function Home({ page, pages, pageContent }: Page) {
+export default function Home({ pageContent }: Page) {
   return (
     <div>
       <Head>
@@ -43,14 +43,28 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   `;
 
+  const footerQuery = groq`
+  *[_type == "footer"] {
+    address,
+    kontakt,
+    logos[],
+    smYoutube,
+    smFacebook,
+    smLinkedin,
+    smInstagram,
+  }
+  `;
+
   const page = await getClient().fetch(pageQuery);
   const pages = await getClient().fetch(pagesQuery);
+  const footer = await getClient().fetch(footerQuery);
 
   return {
     props: {
       page: page[0],
       pages,
       pageContent: page[0].contentBlocks,
+      footer: footer[0],
     },
     revalidate: 10,
   };

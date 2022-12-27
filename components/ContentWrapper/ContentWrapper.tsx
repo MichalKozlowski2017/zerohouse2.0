@@ -5,6 +5,7 @@ import SectionSimple from '@components/ContentSections/SectionSimple/SectionSimp
 import HeaderSlider from '@components/ContentSections/HeaderSlider/HeaderSlider';
 import IconsSlider from '@components/ContentSections/IconsSlider/IconsSlider';
 import FibaroSlider from '@components/ContentSections/FibaroSlider/FibaroSlider';
+import AlternativeSlider from '@components/ContentSections/AlternativeSlider/AlternativeSlider';
 
 const ContentWrapper = ({ content }) => {
   return (
@@ -20,6 +21,8 @@ const ContentWrapper = ({ content }) => {
           return <IconsSlider {...block} key={block._id} />;
         } else if (block._type === 'fibaroSlider') {
           return <FibaroSlider {...block} key={block._id} />;
+        } else if (block._type === 'alternativeSlider') {
+          return <AlternativeSlider {...block} key={block._id} />;
         }
       })}
     </>
