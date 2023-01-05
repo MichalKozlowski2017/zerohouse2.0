@@ -7,6 +7,7 @@ import sliderVideo from './contentTypes/headerSlider/sliderVideo'
 import iconsSlider from './contentTypes/iconsSlider'
 import fibaroSlider from './contentTypes/fibaroSlider'
 import alternativeSlider from './contentTypes/alternativeSlider'
+import sectionKontakt from './contentTypes/sectionKontakt'
 import footer from './footer'
 
 export const schemaTypes = [
@@ -20,4 +21,5 @@ export const schemaTypes = [
   iconsSlider,
   fibaroSlider,
   alternativeSlider,
+  sectionKontakt,
 ]

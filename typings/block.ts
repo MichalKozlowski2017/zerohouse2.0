@@ -1,10 +1,12 @@
 export interface Block {
   _id: string;
   _type: string;
+  name: string;
   image: {
     alt: string;
     asset: object;
   };
   content: [];
   imageSize: string;
+  imagePosition: string;
 }

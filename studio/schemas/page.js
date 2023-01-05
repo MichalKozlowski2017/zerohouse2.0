@@ -54,6 +54,7 @@ export default {
             {type: 'iconsSlider'},
             {type: 'fibaroSlider'},
             {type: 'alternativeSlider'},
+            {type: 'sectionKontakt'},
           ],
         },
       ],

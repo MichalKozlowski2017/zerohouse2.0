@@ -5,6 +5,7 @@ import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
 
 const HeaderSimple = (block: Block) => {
+  console.log(block);
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
   const myPortableTextComponents = {
     block: {
@@ -36,23 +37,44 @@ const HeaderSimple = (block: Block) => {
             setRatio(naturalWidth / naturalHeight)
           }
         ></Image>
-        <div
-          className="absolute top-[5vw] left-[5vw] text-[21px]
-          xs:left-[13vw] xs:text-[24px]
-          sm:left-[13vw] sm:text-[31px]
-          md:left-[13vw] md:text-[40px]
-          lg:left-[15vw] lg:text-[45px]
-          xl:left-[15vw] xl:top-[7vw] xl:text-[60px]
-          xl3:left-[230px] xl3:top-[130px] xl3:text-[89px]
-        "
-        >
-          <PortableText
-            value={block.content}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            components={myPortableTextComponents}
-          />
-        </div>
+        {block.name === 'Kontakt Header' ? (
+          <div
+            className="absolute bottom-[5vw] left-[5vw] text-[21px] p-[20px]
+              xs:left-[13vw] xs:text-[24px]
+              sm:left-[13vw] sm:text-[31px]
+              md:left-[13vw] md:text-[40px] md:p-[40px] md:top-auto md:bottom-[5vw]
+              lg:left-[15vw] lg:text-[45px]
+              xl:left-[15vw] xl:bottom-[7vw] xl:text-[60px] xl:px-[70px]
+              xl3:left-[230px] xl3:bottom-[130px] xl3:text-[89px]
+              bg-white
+            "
+          >
+            <PortableText
+              value={block.content}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              components={myPortableTextComponents}
+            />
+          </div>
+        ) : (
+          <div
+            className="absolute top-[5vw] left-[5vw] text-[21px]
+              xs:left-[13vw] xs:text-[24px]
+              sm:left-[13vw] sm:text-[31px]
+              md:left-[13vw] md:text-[40px]
+              lg:left-[15vw] lg:text-[45px]
+              xl:left-[15vw] xl:top-[7vw] xl:text-[60px]
+              xl3:left-[230px] xl3:top-[130px] xl3:text-[89px]
+            "
+          >
+            <PortableText
+              value={block.content}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              components={myPortableTextComponents}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

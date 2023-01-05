@@ -11,7 +11,6 @@ import {
 } from 'react-icons/sl';
 
 const Footer = (footer: FooterType) => {
-  console.log(footer);
   return (
     <footer className="w-full relative">
       <div
