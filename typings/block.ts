@@ -9,4 +9,5 @@ export interface Block {
   content: [];
   imageSize: string;
   imagePosition: string;
+  panoramaImages: string;
 }

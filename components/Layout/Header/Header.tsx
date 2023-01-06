@@ -8,7 +8,16 @@ import Logo from '@components/Logo/Logo';
 
 const Header = ({ pages }: Pages) => {
   const [isOpen, setOpen] = useState(false);
+  const [small, setSmall] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', () =>
+        setSmall(window.pageYOffset > 15)
+      );
+    }
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -20,18 +29,19 @@ const Header = ({ pages }: Pages) => {
   return (
     <>
       <header
-        className={`h-[70px] md:h-[124px] w-full max-w-[1920px] fixed inline-flex z-30 top-0 items-center justify-between px-4 md:px-9 uppercase text-base transition ${
-          isOpen ? 'bg-white' : 'bg-[transparent]'
-        }`}
+        className={`fixed top-0 z-30 inline-flex h-[70px] w-full max-w-[1920px] items-center justify-between px-4 text-base uppercase transition transition-all md:h-[124px] 
+          md:px-9
+          ${small ? 'border-b border-[#DFDFDF] bg-[#F8F8F8] md:h-[70px]' : ''}
+        `}
       >
         <div>
           <Link href="/">
-            <Logo color={router.pathname === '/' ? '#fff' : '#000'} />
+            <Logo color={router.pathname === '/' && !small ? '#fff' : '#000'} />
           </Link>
         </div>
         <div
           className={`hidden mobileMenu:inline-flex ${
-            router.pathname === '/' ? 'text-white' : 'text-black'
+            router.pathname === '/' && !small ? 'text-white' : 'text-black'
           }`}
         >
           {pages?.map((page) => (
@@ -40,13 +50,22 @@ const Header = ({ pages }: Pages) => {
             </div>
           ))}
         </div>
-        <div className="flex mobileMenu:hidden z-50">
-          <Hamburger color="#000" rounded toggled={isOpen} toggle={setOpen} />
+        <div className="z-50 flex mobileMenu:hidden">
+          <Hamburger
+            color={router.pathname === '/' && !small ? '#fff' : '#000'}
+            rounded
+            toggled={isOpen}
+            toggle={setOpen}
+          />
         </div>
       </header>
       <AnimatePresence>
         {isOpen ? (
-          <div className="fixed w-[100%] h-auto z-20 overflow-hidden mobileMenu:hidden top-[70px] md:top-[124px]">
+          <div
+            className={`fixed top-[70px] z-20 h-auto w-[100%] overflow-hidden overflow-visible md:top-[124px] mobileMenu:hidden
+          ${small ? 'md:top-[70px]' : 'md:top-[124px]'}
+          `}
+          >
             <motion.div
               initial={{ y: '-100%' }}
               animate={{ y: '0' }}
@@ -55,11 +74,11 @@ const Header = ({ pages }: Pages) => {
                 y: { duration: 0.3 },
                 default: { ease: 'linear' },
               }}
-              className={`relative w-[100%] h-auto flex flex-col bg-white top-0 justify-center items-center  left-0 py-10`}
+              className={`relative top-0 left-0 flex h-auto w-[100%] flex-col items-center justify-center bg-[#F8F8F8] py-10 shadow-lg`}
             >
               {pages?.map((page) => (
                 <div
-                  className="block my-2 text-2xl cursor-pointer"
+                  className="my-2 block cursor-pointer text-2xl"
                   key={page._id}
                 >
                   <Link href={`/${page.slug.current}`}>{page.title}</Link>

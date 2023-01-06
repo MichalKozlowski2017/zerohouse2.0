@@ -10,20 +10,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
+      title: 'Panorama images',
+      name: 'panoramaImages',
+      type: 'string',
       options: {
-        hotspot: true,
+        list: ['wew_1', 'wew_2', 'wew_3', 'zew_1', 'zew_2', 'zew_3'],
       },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alt',
-        },
-      ],
     },
     {
       name: 'content',
@@ -33,7 +25,7 @@ export default {
         {
           type: 'block',
           styles: [
-            {title: 'Title', value: 'h1'},
+            {title: 'Title', value: 'h3'},
             {title: 'Paragraph', value: 'p'},
           ],
         },

@@ -10,12 +10,12 @@ const HeaderSimple = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h1: ({ children }) => (
-        <h1 className="text-[#2c2c2c] text-[0.7em] mb-[0.5em] sm:text-[0.5em] sm:mb-[0.4em] xl2:text-[0.4em]">
+        <h1 className="mb-[0.5em] text-[0.7em] text-[#2c2c2c] sm:mb-[0.4em] sm:text-[0.5em] xl2:text-[0.4em]">
           {children}
         </h1>
       ),
       h2: ({ children }) => (
-        <h2 className="text-[#2c2c2c] font-bold text-[1em] leading-tight">
+        <h2 className="text-[1em] font-bold leading-tight text-[#2c2c2c]">
           {children}
         </h2>
       ),
@@ -23,10 +23,10 @@ const HeaderSimple = (block: Block) => {
   };
   return (
     <section
-      className="flex flex-col-reverse relative bg-[#F8F8F8]
+      className="relative flex flex-col-reverse bg-[#F8F8F8]
     "
     >
-      <div className="relative h-auto flex justify-end pt-[15vw] md:pt-0">
+      <div className="relative flex h-auto justify-end pt-[15vw] md:pt-0">
         <Image
           src={urlFor(block.image).url()}
           alt={block.image.alt}
@@ -39,14 +39,14 @@ const HeaderSimple = (block: Block) => {
         ></Image>
         {block.name === 'Kontakt Header' ? (
           <div
-            className="absolute bottom-[5vw] left-[5vw] text-[21px] p-[20px]
-              xs:left-[13vw] xs:text-[24px]
-              sm:left-[13vw] sm:text-[31px]
-              md:left-[13vw] md:text-[40px] md:p-[40px] md:top-auto md:bottom-[5vw]
-              lg:left-[15vw] lg:text-[45px]
-              xl:left-[15vw] xl:bottom-[7vw] xl:text-[60px] xl:px-[70px]
-              xl3:left-[230px] xl3:bottom-[130px] xl3:text-[89px]
-              bg-white
+            className="absolute bottom-[5vw] left-[5vw] bg-white p-[20px]
+              text-[21px] xs:left-[13vw]
+              xs:text-[24px] sm:left-[13vw]
+              sm:text-[31px] md:left-[13vw] md:top-auto md:bottom-[5vw] md:p-[40px]
+              md:text-[40px] lg:left-[15vw]
+              lg:text-[45px] xl:left-[15vw] xl:bottom-[7vw] xl:px-[70px]
+              xl:text-[60px] xl3:left-[230px] xl3:bottom-[130px]
+              xl3:text-[89px]
             "
           >
             <PortableText
