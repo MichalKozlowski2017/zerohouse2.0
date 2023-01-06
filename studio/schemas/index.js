@@ -9,6 +9,7 @@ import fibaroSlider from './contentTypes/fibaroSlider'
 import alternativeSlider from './contentTypes/alternativeSlider'
 import sectionKontakt from './contentTypes/sectionKontakt'
 import footer from './footer'
+import panorama from './contentTypes/panorama'
 
 export const schemaTypes = [
   page,
@@ -22,4 +23,5 @@ export const schemaTypes = [
   fibaroSlider,
   alternativeSlider,
   sectionKontakt,
+  panorama,
 ]

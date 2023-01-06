@@ -11,19 +11,19 @@ const SectionKontakt = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
-        <h3 className="text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px]">
+        <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:text-[34px]">
           {children}
         </h3>
       ),
       h4: ({ children }) => <h4 className="">{children}</h4>,
       h5: ({ children }) => <h5 className="mb-[30px]">{children}</h5>,
       p: ({ children }) => (
-        <p className="text-[#2c2c2c] text-[18px] pb-[20px] md:text-[16px] xl:text-[21px] leading-loose">
+        <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl:text-[21px]">
           {children}
         </p>
       ),
       cta: ({ children }) => (
-        <div className="inline-block relative my-6 text-center px-[40px] py-[15px] font-bold text-[#000] border-2 border-[#000] cursor-pointer transition hover:text-white hover:bg-[#000]">
+        <div className="relative my-6 inline-block cursor-pointer border-2 border-[#000] px-[40px] py-[15px] text-center font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
           {children}
         </div>
       ),
@@ -46,7 +46,7 @@ const SectionKontakt = (block: Block) => {
           );
         } else {
           return (
-            <span className="cursor-pointer text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px]">
+            <span className="cursor-pointer pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:text-[34px]">
               <Link href={value?.href} target={target} rel={rel}>
                 <span>{children}</span>
               </Link>
@@ -59,12 +59,12 @@ const SectionKontakt = (block: Block) => {
   if (block.imagePosition == 'imgLeft') {
     return (
       <section
-        className="flex flex-col-reverse relative bg-[#F8F8F8] pt-[40px]
+        className="relative flex flex-col-reverse bg-[#F8F8F8] pt-[40px]
       md:flex-row md:pb-[40px] md:pt-[120px] 
       xl:pt-[150px]
       "
       >
-        <div className="relative h-auto w-full md:w-[40%] z-10">
+        <div className="relative z-10 h-auto w-full md:w-[40%]">
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -78,18 +78,18 @@ const SectionKontakt = (block: Block) => {
           />
         </div>
         <div
-          className="px-[40px] py-[40px]
-          xl:py-[90px]
-          md:w-[60%] md:px-[8vw]
-          xl:w-[70%] xl:px-[12vw]
-          bg-white
-          mt-[40px]
-          lg:mt-[90px]
-          xl:mt-[200px]
+          className="relative mt-[40px]
           overflow-visible
-          relative
+          bg-white px-[40px]
+          py-[40px] md:w-[60%]
+          md:px-[8vw]
+          md:before:absolute
+          md:before:left-[-15vw]
+          md:before:h-[calc(100%-40px)]
+          md:before:w-[15vw]
+          md:before:bg-white
 
-          md:before:absolute md:before:bg-white md:before:h-[calc(100%-40px)] md:before:w-[15vw] md:before:left-[-15vw]
+          lg:mt-[90px] xl:mt-[200px] xl:w-[70%] xl:py-[90px] xl:px-[12vw]
           xl:before:h-[calc(100%-90px)]
         "
         >
@@ -105,24 +105,24 @@ const SectionKontakt = (block: Block) => {
   } else {
     return (
       <section
-        className="flex flex-col relative bg-[#F8F8F8]
+        className="relative flex flex-col bg-[#F8F8F8]
       md:flex-row md:py-[40px] 
       xl:pt-[140px]
       "
       >
         <div
-          className="px-[40px] py-[40px]
-          xl:py-[90px]
-          md:w-[60%] md:px-[8vw]
-          xl:w-[70%] xl:px-[12vw]
-          bg-white
-          mt-[40px]
-          lg:mt-[90px]
-          xl:mt-[200px]
+          className="relative mt-[40px]
           overflow-visible
-          relative
+          bg-white px-[40px]
+          py-[40px] md:w-[60%]
+          md:px-[8vw]
+          md:before:absolute
+          md:before:left-[-15vw]
+          md:before:h-[calc(100%-40px)]
+          md:before:w-[15vw]
+          md:before:bg-white
 
-          md:before:absolute md:before:bg-white md:before:h-[calc(100%-40px)] md:before:w-[15vw] md:before:left-[-15vw]
+          lg:mt-[90px] xl:mt-[200px] xl:w-[70%] xl:py-[90px] xl:px-[12vw]
           xl:before:h-[calc(100%-90px)]
         "
         >
@@ -133,7 +133,7 @@ const SectionKontakt = (block: Block) => {
             components={myPortableTextComponents}
           />
         </div>
-        <div className="relative h-auto w-full md:w-[40%] z-10">
+        <div className="relative z-10 h-auto w-full md:w-[40%]">
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}

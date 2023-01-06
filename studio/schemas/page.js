@@ -55,6 +55,7 @@ export default {
             {type: 'fibaroSlider'},
             {type: 'alternativeSlider'},
             {type: 'sectionKontakt'},
+            {type: 'panorama'},
           ],
         },
       ],

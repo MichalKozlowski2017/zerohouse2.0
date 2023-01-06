@@ -7,6 +7,7 @@ import IconsSlider from '@components/ContentSections/IconsSlider/IconsSlider';
 import FibaroSlider from '@components/ContentSections/FibaroSlider/FibaroSlider';
 import SectionKontakt from '@components/ContentSections/SectionKontakt/SectionKontakt';
 import AlternativeSlider from '@components/ContentSections/AlternativeSlider/AlternativeSlider';
+import Panorama from '@components/ContentSections/Panorama/Panorama';
 
 const ContentWrapper = ({ content }) => {
   return (
@@ -26,6 +27,8 @@ const ContentWrapper = ({ content }) => {
           return <AlternativeSlider {...block} key={block._id} />;
         } else if (block._type === 'sectionKontakt') {
           return <SectionKontakt {...block} key={block._id} />;
+        } else if (block._type === 'panorama') {
+          return <Panorama {...block} key={block._id} />;
         }
       })}
     </>
