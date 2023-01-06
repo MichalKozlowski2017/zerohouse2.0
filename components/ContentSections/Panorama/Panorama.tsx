@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactPannellum, { getConfig } from 'react-pannellum';
+import ReactPannellum from 'react-pannellum';
 
 const Panorama = () => {
   const config = {
