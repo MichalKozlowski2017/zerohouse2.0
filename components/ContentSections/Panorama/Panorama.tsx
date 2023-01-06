@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactPannellum from 'react-pannellum';
+import { Block } from '@typings/block';
+import Image from 'next/image';
+import { urlFor } from '@lib/sanity';
+import { PortableText } from '@portabletext/react';
 
-const Panorama = () => {
+const Panorama = (block: Block) => {
+  console.log(block);
   const config = {
     autoRotate: -2,
     autoLoad: true,
+    crossOrigin: 'use-credentials',
   };
   return (
     <section className="relative overflow-hidden bg-[#F8F8F8] pb-[75px]">
@@ -13,7 +19,7 @@ const Panorama = () => {
           <ReactPannellum
             id="1"
             sceneId="firstScene"
-            imageSource="/assets/images/JZE_360_01.jpg"
+            imageSource={urlFor(block.image).url()}
             style={{
               position: 'relative',
               width: '100%',
