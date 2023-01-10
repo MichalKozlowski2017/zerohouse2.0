@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import ReactPannellum, {
-  getConfig,
-  addScene,
-  loadScene,
-} from 'react-pannellum';
+import React, { useState } from 'react';
+import ReactPannellum, { addScene, loadScene } from 'react-pannellum';
 import { Block } from '@typings/block';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import { v4 as uuidv4 } from 'uuid';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Panorama = (block: Block) => {
   const [scene, setScene] = useState('Wnętrze 1');
@@ -77,7 +73,7 @@ const Panorama = (block: Block) => {
     },
   ];
 
-  const handleScene = (arg, title) => {
+  const handleScene = (arg: string, title: React.SetStateAction<string>) => {
     loadScene(arg);
     setScene(title);
   };

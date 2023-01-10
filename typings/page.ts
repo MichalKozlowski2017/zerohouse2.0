@@ -7,5 +7,8 @@ export interface Page {
   keywords: string;
   title: string;
   pages: [];
+  offers: [];
+  page: object;
   pageContent: object;
+  offerInfo: object;
 }

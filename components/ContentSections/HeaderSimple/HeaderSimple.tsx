@@ -5,7 +5,6 @@ import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
 
 const HeaderSimple = (block: Block) => {
-  console.log(block);
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
   const myPortableTextComponents = {
     block: {
@@ -58,8 +57,8 @@ const HeaderSimple = (block: Block) => {
           </div>
         ) : (
           <div
-            className="absolute top-[5vw] left-[5vw] text-[21px]
-              xs:left-[13vw] xs:text-[24px]
+            className="absolute top-[5vw] left-[5vw] text-[24px]
+              xs:left-[13vw] xs:text-[31px]
               sm:left-[13vw] sm:text-[31px]
               md:left-[13vw] md:text-[40px]
               lg:left-[15vw] lg:text-[45px]

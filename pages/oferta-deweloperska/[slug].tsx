@@ -26,7 +26,7 @@ export default Page;
 
 export const getStaticPaths = async () => {
   const query = groq`
-    *[_type == "page"]{
+    *[_type == "offer"]{
       _id,
       slug {
         current
@@ -48,14 +48,12 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const query = groq`
-    *[_type == "page" && slug.current == $slug][0]{
+    *[_type == "offer" && slug.current == $slug][0]{
       title,
       slug {
         current
       },
       _id,
-      excerpt,
-      keywords,
       contentBlocks[] -> {...},
       offerInfo
     }

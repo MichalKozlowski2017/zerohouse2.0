@@ -56,6 +56,7 @@ export default {
             {type: 'alternativeSlider'},
             {type: 'sectionKontakt'},
             {type: 'panorama'},
+            {type: 'offersList'},
           ],
         },
       ],

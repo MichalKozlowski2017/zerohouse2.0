@@ -29,9 +29,9 @@ const Header = ({ pages }: Pages) => {
   return (
     <>
       <header
-        className={`fixed top-0 z-30 inline-flex h-[70px] w-full max-w-[1920px] items-center justify-between px-4 text-base uppercase transition transition-all md:h-[124px] 
+        className={`fixed top-0 z-30 inline-flex h-[70px] w-full max-w-[1920px] items-center justify-between px-4 text-base uppercase transition-all md:h-[124px] 
           md:px-9
-          ${small ? 'border-b border-[#DFDFDF] bg-[#F8F8F8] md:h-[70px]' : ''}
+          ${small ? 'bg-[#F8F8F8] md:h-[70px]' : ''}
         `}
       >
         <div>

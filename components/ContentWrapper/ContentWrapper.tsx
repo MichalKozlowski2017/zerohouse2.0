@@ -8,8 +8,10 @@ import FibaroSlider from '@components/ContentSections/FibaroSlider/FibaroSlider'
 import SectionKontakt from '@components/ContentSections/SectionKontakt/SectionKontakt';
 import AlternativeSlider from '@components/ContentSections/AlternativeSlider/AlternativeSlider';
 import Panorama from '@components/ContentSections/Panorama/Panorama';
+import OfferInfo from '@components/ContentSections/OfferInfo/OfferInfo';
+import OffersList from '@components/ContentSections/OffersList/OffersList';
 
-const ContentWrapper = ({ content }) => {
+const ContentWrapper = ({ content, offerInfo, offers }) => {
   return (
     <>
       {content?.map((block: Block) => {
@@ -29,6 +31,10 @@ const ContentWrapper = ({ content }) => {
           return <SectionKontakt {...block} key={block._id} />;
         } else if (block._type === 'panorama') {
           return <Panorama {...block} key={block._id} />;
+        } else if (block._type === 'offerInfo') {
+          return <OfferInfo offerInfo={offerInfo} key={block._id} />;
+        } else if (block._type === 'offersList') {
+          return <OffersList offers={offers} key={block._id} />;
         }
       })}
     </>

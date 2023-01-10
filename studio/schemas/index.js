@@ -10,6 +10,9 @@ import alternativeSlider from './contentTypes/alternativeSlider'
 import sectionKontakt from './contentTypes/sectionKontakt'
 import footer from './footer'
 import panorama from './contentTypes/panorama'
+import offer from './offer'
+import offerInfo from './contentTypes/offerInfo'
+import offersList from './contentTypes/offersList'
 
 export const schemaTypes = [
   page,
@@ -24,4 +27,7 @@ export const schemaTypes = [
   alternativeSlider,
   sectionKontakt,
   panorama,
+  offer,
+  offerInfo,
+  offersList,
 ]
