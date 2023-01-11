@@ -126,11 +126,15 @@ const OfferInfo = ({ offerInfo }) => {
         )}
       </div>
 
-      <div>
+      {/* Pomieszczenia */}
+      <div className="mx-auto">
         {offerInfo.levels?.map((level, index: number) => {
           return index % 2 === 0 ? (
-            <div key={uuidv4()} className="relative flex flex-col items-center">
-              <div className="w-[70%]">
+            <div
+              key={uuidv4()}
+              className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
+            >
+              <div className="relative mx-auto w-[70%]">
                 <Image
                   src={urlFor(level.image).url()}
                   alt={level.image.alt}
@@ -144,21 +148,76 @@ const OfferInfo = ({ offerInfo }) => {
                 />
               </div>
 
-              <div className="w-full">
-                <h4>{level.title}</h4>
+              <div className="w-full p-[40px] md:max-w-[450px] lg:px-0">
+                <h4 className="mb-[40px] text-[16px] font-bold">
+                  {level.title}
+                </h4>
                 <ul>
                   {level.rooms.rows.map((row: Row) => (
-                    <li key={row._key}>
-                      {row.cells.map((cell: string) => (
-                        <span key={uuidv4()}>{cell}</span>
-                      ))}
+                    <li
+                      key={row._key}
+                      className="flex justify-between border-b py-[10px] last:border-0 lg:py-[23px]"
+                    >
+                      {row.cells.map((cell: string, index: number) => {
+                        return index === 0 ? (
+                          <span className="" key={uuidv4()}>
+                            {cell}
+                          </span>
+                        ) : (
+                          <span key={uuidv4()} className="font-bold">
+                            {cell} m<sup>2</sup>
+                          </span>
+                        );
+                      })}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
           ) : (
-            <div>prawa</div>
+            <div
+              key={uuidv4()}
+              className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
+            >
+              <div className="ml-auto w-full p-[40px] md:max-w-[450px] lg:px-0">
+                <h4 className="mb-[40px] text-[16px] font-bold">
+                  {level.title}
+                </h4>
+                <ul>
+                  {level.rooms.rows.map((row: Row) => (
+                    <li
+                      key={row._key}
+                      className="flex justify-between border-b py-[10px] last:border-0 lg:py-[23px]"
+                    >
+                      {row.cells.map((cell: string, index: number) => {
+                        return index === 0 ? (
+                          <span className="" key={uuidv4()}>
+                            {cell}
+                          </span>
+                        ) : (
+                          <span key={uuidv4()} className="font-bold">
+                            {cell} m<sup>2</sup>
+                          </span>
+                        );
+                      })}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative mx-auto w-[70%]">
+                <Image
+                  src={urlFor(level.image).url()}
+                  alt={level.image.alt}
+                  width={1024}
+                  height={1024 / ratio}
+                  style={{ objectFit: 'contain' }}
+                  onLoadingComplete={({ naturalWidth, naturalHeight }) =>
+                    setRatio(naturalWidth / naturalHeight)
+                  }
+                  className="lg:block"
+                />
+              </div>
+            </div>
           );
         })}
       </div>

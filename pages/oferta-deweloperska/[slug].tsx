@@ -66,7 +66,7 @@ export const getStaticProps = async ({ params }) => {
   `;
 
   const offersQuery = groq`
-  *[_type == "offer"]{
+  *[_type == "offer"] | order(title asc) {
     ...
   }
   `;

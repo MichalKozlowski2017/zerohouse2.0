@@ -46,7 +46,7 @@ const Header = ({ pages }: Pages) => {
         >
           {pages?.map((page) => (
             <div className="mx-[40px]" key={page._id}>
-              <Link href={page.slug.current}>{page.title}</Link>
+              <Link href={`/${page.slug.current}`}>{page.title}</Link>
             </div>
           ))}
         </div>
@@ -62,7 +62,7 @@ const Header = ({ pages }: Pages) => {
       <AnimatePresence>
         {isOpen ? (
           <div
-            className={`fixed top-[70px] z-20 h-auto w-[100%] overflow-hidden overflow-visible md:top-[124px] mobileMenu:hidden
+            className={`fixed top-[70px] z-20 h-auto w-[100%] overflow-visible md:top-[124px] mobileMenu:hidden
           ${small ? 'md:top-[70px]' : 'md:top-[124px]'}
           `}
           >
