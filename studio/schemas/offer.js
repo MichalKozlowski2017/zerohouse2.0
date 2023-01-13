@@ -54,6 +54,11 @@ export default {
           },
         },
         {
+          title: 'Inwestycja',
+          name: 'estate',
+          type: 'string',
+        },
+        {
           title: 'Projekt',
           name: 'project',
           type: 'string',
@@ -161,6 +166,7 @@ export default {
             {type: 'sectionKontakt'},
             {type: 'panorama'},
             {type: 'offerInfo'},
+            {type: 'packages'},
           ],
         },
       ],

@@ -10,7 +10,13 @@ export interface Offer {
     current: string;
   };
   offerInfo: {
-    features: object;
+    features: {
+      bedrooms: number;
+      bathrooms: number;
+      garden: number;
+      parking: number;
+    };
+    estate: string;
     levels: [
       {
         image: {

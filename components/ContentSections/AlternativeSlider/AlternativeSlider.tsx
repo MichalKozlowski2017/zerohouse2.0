@@ -13,7 +13,6 @@ import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
 
 const AlternativeSlider = (block: Block) => {
-  console.log(block);
   const [mySwiper, setMySwiper] = useState({});
   const [mySwiper2, setMySwiper2] = useState(null);
   SwiperCore.use([Autoplay]);
@@ -23,17 +22,17 @@ const AlternativeSlider = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
-        <h3 className="text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px] xl:pr-[200px]">
+        <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:pr-[200px] xl:text-[34px]">
           {children}
         </h3>
       ),
       p: ({ children }) => (
-        <p className="text-[#2c2c2c] text-[18px] pb-[20px] md:text-[16px] xl:text-[21px] leading-loose">
+        <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl:text-[21px]">
           {children}
         </p>
       ),
       cta: ({ children }) => (
-        <div className="inline-block relative my-6 text-center px-[40px] py-[15px] font-bold text-[#000] border-2 border-[#000] cursor-pointer transition hover:text-white hover:bg-[#000]">
+        <div className="relative my-6 inline-block cursor-pointer border-2 border-[#000] px-[40px] py-[15px] text-center font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
           {children}
         </div>
       ),
@@ -70,15 +69,15 @@ const AlternativeSlider = (block: Block) => {
     <section className="relative">
       <div
         className="relative
+          z-10 bg-white
+          px-[40px] 
+          py-[40px]
           md:left-[13vw] md:mt-[-8vw]
-          lg:left-[15vw] 
-          xl:left-[15vw]
-          xl3:left-[230px] xl3:mt-[-150px]
-          px-[40px] py-[40px]
           md:w-[70%] md:px-[40px]
+          lg:left-[15vw] xl:left-[15vw]
           xl:w-[50%] xl:px-[40px] xl:py-[65px]
-          bg-white
-          z-10
+          xl3:left-[230px]
+          xl3:mt-[-150px]
           "
       >
         <Swiper
@@ -120,8 +119,8 @@ const AlternativeSlider = (block: Block) => {
           </div>
         </Swiper>
       </div>
-      <div className="relative w-full alt-slider">
-        <div className="relative w-full ml-auto md:w-[60%] md:mt-[-15vw] lg:mt-[-9vw] xl:w-[65%] xl:mt-[-10vw] xl3:mt-[-233px]">
+      <div className="alt-slider relative w-full">
+        <div className="relative ml-auto w-full md:mt-[-15vw] md:w-[60%] lg:mt-[-9vw] xl:mt-[-10vw] xl:w-[65%] xl3:mt-[-233px]">
           <Swiper
             onSwiper={(swiper2) => {
               swiperRef2.current = swiper2;

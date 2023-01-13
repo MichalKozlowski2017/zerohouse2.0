@@ -9,11 +9,10 @@ type Row = {
 };
 
 const OfferInfo = ({ offerInfo }) => {
-  console.log(offerInfo);
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
   return (
     <section
-      className="relative flex flex-col
+      className="relative flex flex-col pb-[40px]
     "
     >
       <div className="relative mx-auto flex w-full flex-col justify-between bg-white p-[40px] sm:flex-row sm:items-end lg:mt-[-60px] lg:max-w-[80%]">
@@ -156,7 +155,7 @@ const OfferInfo = ({ offerInfo }) => {
                   {level.rooms.rows.map((row: Row) => (
                     <li
                       key={row._key}
-                      className="flex justify-between border-b py-[10px] last:border-0 lg:py-[23px]"
+                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] lg:text-[21px]"
                     >
                       {row.cells.map((cell: string, index: number) => {
                         return index === 0 ? (
@@ -187,7 +186,7 @@ const OfferInfo = ({ offerInfo }) => {
                   {level.rooms.rows.map((row: Row) => (
                     <li
                       key={row._key}
-                      className="flex justify-between border-b py-[10px] last:border-0 lg:py-[23px]"
+                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] lg:text-[21px]"
                     >
                       {row.cells.map((cell: string, index: number) => {
                         return index === 0 ? (

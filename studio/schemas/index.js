@@ -13,6 +13,8 @@ import panorama from './contentTypes/panorama'
 import offer from './offer'
 import offerInfo from './contentTypes/offerInfo'
 import offersList from './contentTypes/offersList'
+import offersSlider from './contentTypes/offersSlider'
+import packages from './contentTypes/packages'
 
 export const schemaTypes = [
   page,
@@ -30,4 +32,6 @@ export const schemaTypes = [
   offer,
   offerInfo,
   offersList,
+  offersSlider,
+  packages,
 ]

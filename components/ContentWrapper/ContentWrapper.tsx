@@ -10,6 +10,8 @@ import AlternativeSlider from '@components/ContentSections/AlternativeSlider/Alt
 import Panorama from '@components/ContentSections/Panorama/Panorama';
 import OfferInfo from '@components/ContentSections/OfferInfo/OfferInfo';
 import OffersList from '@components/ContentSections/OffersList/OffersList';
+import OffersSlider from '@components/ContentSections/OffersSlider/OffersSlider';
+import Packages from '@components/ContentSections/Packages/Packages';
 
 const ContentWrapper = ({ content, offerInfo, offers }) => {
   return (
@@ -35,6 +37,10 @@ const ContentWrapper = ({ content, offerInfo, offers }) => {
           return <OfferInfo offerInfo={offerInfo} key={block._id} />;
         } else if (block._type === 'offersList') {
           return <OffersList offers={offers} key={block._id} />;
+        } else if (block._type === 'offersSlider') {
+          return <OffersSlider offers={offers} key={block._id} />;
+        } else if (block._type === 'packages') {
+          return <Packages {...block} key={block._id} />;
         }
       })}
     </>
