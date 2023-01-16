@@ -19,23 +19,23 @@ const IconsSlider = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
-        <h3 className="text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px]">
+        <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl3:text-[34px]">
           {children}
         </h3>
       ),
       p: ({ children }) => (
-        <p className="text-[#2c2c2c] text-[18px] pb-[20px] md:text-[16px] xl:text-[21px] leading-loose">
+        <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl3:text-[21px]">
           {children}
         </p>
       ),
     },
   };
   return (
-    <section className="md:flex justify-end pb-[75px] relative overflow-hidden bg-[#F8F8F8] items-stretch">
+    <section className="relative items-stretch justify-end overflow-hidden bg-[#F8F8F8] pb-[75px] md:flex">
       <div
-        className="iconsSlider-pagination relative bg-white flex px-[40px] py-[80px] justify-around 
+        className="iconsSlider-pagination relative flex justify-around bg-white px-[40px] py-[80px] 
         md:w-[40%] md:px-[5px]
-        xl:w-[25%] xl:items-center
+        xl:w-[25%] xl:items-end
         xl3:items-end
       "
       >
@@ -47,9 +47,9 @@ const IconsSlider = (block: Block) => {
               if (!(event.target instanceof HTMLButtonElement)) return;
               swiperRef.current?.slideToLoop(Number(event.target.dataset.id));
             }}
-            className={`w-[30px] h-[40px] relative transition-transform
-              xs:w-[40px] xs:h-[50px]
-              md:w-[30px] md:h-[40px]
+            className={`relative h-[40px] w-[30px] transition-transform
+              xs:h-[50px] xs:w-[40px]
+              md:h-[40px] md:w-[30px]
               ${index == 0 && 'iconsSlider-active'}
             `}
           >

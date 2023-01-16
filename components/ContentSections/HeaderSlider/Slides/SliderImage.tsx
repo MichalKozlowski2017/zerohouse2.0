@@ -8,12 +8,12 @@ const SliderImage = ({ image, content }) => {
   const myPortableTextComponents = {
     block: {
       h2: ({ children }) => (
-        <h2 className="uppercase text-white font-bold leading-[1.2] text-[2em]">
+        <h2 className="text-[2em] font-bold uppercase leading-[1.2] text-white">
           {children}
         </h2>
       ),
       h3: ({ children }) => (
-        <h3 className="uppercase text-white leading-[2.2] text-[1em] ">
+        <h3 className="text-[1em] uppercase leading-[2.2] text-white ">
           {children}
         </h3>
       ),
@@ -49,7 +49,7 @@ const SliderImage = ({ image, content }) => {
   };
 
   return (
-    <div className=" h-[100vh] relative">
+    <div className=" relative h-[100vh]">
       <Image
         priority={true}
         src={urlFor(image).url()}
@@ -58,15 +58,14 @@ const SliderImage = ({ image, content }) => {
         style={{ objectFit: 'cover' }}
       />
       <div
-        className="absolute xs:block bottom-[25vh] text-[16px] left-1/2 -translate-x-1/2
-        xs:bottom-[25vh] xs:text-[20px]
+        className="absolute bottom-[25vh] left-1/2 -translate-x-1/2 text-[16px] xs:bottom-[25vh]
+        xs:block xs:text-[20px]
         sm:bottom-[25vh] sm:text-[24px]
-        md:bottom-[25vh] md:text-[25px] md:left-[60%]
-        lg:bottom-[25vh] lg:text-[30px] lg:left-2/3
+        md:bottom-[25vh] md:left-[60%] md:text-[25px]
+        lg:bottom-[25vh] lg:left-2/3 lg:text-[30px]
         xl:bottom-[25vh] xl:text-[35px]
         xl3:bottom-[25vh] xl3:text-[40px]
         xl4:bottom-[25vh] xl4:text-[43px]
-      
       "
       >
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}

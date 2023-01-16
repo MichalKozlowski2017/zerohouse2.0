@@ -28,7 +28,7 @@ const Packages = (block: Block) => {
   const swiperRef2 = useRef<SwiperRef>();
 
   return (
-    <section className="relative bg-white md:bg-transparent lg:py-[70px] xl:py-[130px]">
+    <section className="relative bg-white md:bg-transparent lg:py-[75px]">
       <h2 className="relative px-[40px] pt-[40px] text-[16px] font-bold uppercase md:hidden">
         NASZE PAKIETY
       </h2>
@@ -49,10 +49,6 @@ const Packages = (block: Block) => {
           speed={800}
           loop={false}
           allowTouchMove={false}
-          onSlideChange={() => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-          }}
         >
           {block.content.map(({ image }: Pakiet) => (
             <SwiperSlide key={uuidv4()}>
@@ -104,11 +100,9 @@ const Packages = (block: Block) => {
               <div className="grid grid-cols-1 items-end bg-white px-[40px] pt-[40px] md:min-h-[553px] md:grid-cols-2  md:pt-0 lg:min-h-[773px] xl:px-[13vw] xl3:px-[250px]">
                 <div className="md:my-[60px] xl:pr-[70px]">
                   {/* header */}
-                  <h3 className=" text-[34px] md:text-[25px] xl2:text-[34px]">
-                    {slide.name}
-                  </h3>
+                  <h3 className="text-[25px] xl2:text-[30px]">{slide.name}</h3>
                   {slide.cena > 0 && (
-                    <h5 className="text-[21px] md:text-[18px] xl2:text-[21px]">
+                    <h5 className="text-[21px] md:text-[18px]">
                       Cena już od:{' '}
                       <b className="text-[28px] font-bold md:text-[23px]">
                         {slide.cena.toLocaleString('pl-PL')} zł

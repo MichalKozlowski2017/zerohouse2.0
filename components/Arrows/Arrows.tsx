@@ -2,16 +2,16 @@ import React from 'react';
 
 const Arrows = ({ swiper }) => {
   return (
-    <div className="w-[200px] h-[20px] flex justify-between my-[10px]">
+    <div className="my-[10px] flex h-[20px] w-[200px] justify-between">
       <div
-        className="arr--prev opacity-20 transition-opacity hover:opacity-100 cursor-pointer"
+        className="arr--prev cursor-pointer opacity-50 transition-opacity hover:opacity-100"
         onClick={() => swiper.slidePrev()}
       >
         <svg
           viewBox="0 0 102 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-auto h-full rotate-180"
+          className="h-full w-auto rotate-180"
         >
           <path
             className="fill-[#2c2c2c]"
@@ -20,14 +20,14 @@ const Arrows = ({ swiper }) => {
         </svg>
       </div>
       <div
-        className="arr--next opacity-20 transition-opacity hover:opacity-100 cursor-pointer"
+        className="arr--next cursor-pointer opacity-50 transition-opacity hover:opacity-100"
         onClick={() => swiper.slideNext()}
       >
         <svg
           viewBox="0 0 102 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-auto h-full"
+          className="h-full w-auto"
         >
           <path
             className="fill-[#2c2c2c]"

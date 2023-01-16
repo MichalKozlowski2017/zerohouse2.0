@@ -167,6 +167,7 @@ export default {
             {type: 'panorama'},
             {type: 'offerInfo'},
             {type: 'packages'},
+            {type: 'gallery'},
           ],
         },
       ],

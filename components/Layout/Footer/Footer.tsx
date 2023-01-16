@@ -12,13 +12,13 @@ import {
 
 const Footer = (footer: FooterType) => {
   return (
-    <footer className="w-full relative">
+    <footer className="relative mt-[75px] w-full">
       <div
-        className="relative flex flex-col bg-white xl3:py-[100px] xl3:px-[362px] justify-between items-center
-      px-[40px] py-[40px]
-      md:flex-row
-      lg:py-[70px] lg:px-[6vw]
+        className="relative flex flex-col items-center justify-between bg-white px-[40px] py-[40px]
+      md:flex-row lg:py-[70px]
+      lg:px-[6vw]
       xl:py-[90px] xl:px-[14vw]
+      xl3:py-[100px] xl3:px-[362px]
       "
       >
         {footer.logos?.map((logo, index) => (
@@ -28,7 +28,7 @@ const Footer = (footer: FooterType) => {
             rel="nofollow noindex"
             key={logo._key}
             className={`footer-logo-${index} relative 
-            w-[190px] h-[110px]
+            h-[110px] w-[190px]
             `}
           >
             <Image
@@ -45,14 +45,14 @@ const Footer = (footer: FooterType) => {
       </div>
       <div className="px-[40px] py-[40px] text-[18px] md:flex md:items-start md:justify-between lg:py-[70px] lg:px-[6vw] xl:py-[90px] xl:px-[14vw] xl3:px-[10%]">
         <div className="lg:flex">
-          <div className="pb-[40px] mr-[150px] lg:mr-[14vw] xl3:mr-[300px]">
-            <h5 className="relative footer-adres uppercase font-semibold mb-[20px]">
+          <div className="mr-[150px] pb-[40px] lg:mr-[14vw] xl3:mr-[300px]">
+            <h5 className="footer-adres relative mb-[20px] font-semibold uppercase">
               <Image
                 src="/assets/images/pin.svg"
                 height={24}
                 width={18}
                 alt="Adres Inwestycji"
-                className="hidden absolute left-[-30px] lg:block"
+                className="absolute left-[-30px] hidden lg:block"
               />
               Adres Inwestycji
             </h5>
@@ -63,13 +63,13 @@ const Footer = (footer: FooterType) => {
             </p>
           </div>
           <div className="pb-[40px]">
-            <h5 className="relative footer-kontakt uppercase font-semibold mb-[20px]">
+            <h5 className="footer-kontakt relative mb-[20px] font-semibold uppercase">
               <Image
                 src="/assets/images/person.svg"
                 height={22}
                 width={22}
                 alt="Kontakt"
-                className="hidden absolute left-[-33px] lg:block"
+                className="absolute left-[-33px] hidden lg:block"
               />
               Kontakt
             </h5>
@@ -80,11 +80,11 @@ const Footer = (footer: FooterType) => {
             </p>
           </div>
         </div>
-        <div className="relative flex justify-start items-center">
+        <div className="relative flex items-center justify-start">
           {footer.smYoutube && (
             <Link href={footer.smYoutube} target="_blank">
               <SlSocialYoutube
-                className="w-auto h-[30px] mr-[30px] md:mr-[0] md:ml-[30px]"
+                className="mr-[30px] h-[30px] w-auto md:mr-[0] md:ml-[30px]"
                 color="#404040"
               />
             </Link>
@@ -92,7 +92,7 @@ const Footer = (footer: FooterType) => {
           {footer.smFacebook && (
             <Link href={footer.smFacebook} target="_blank">
               <SlSocialFacebook
-                className="w-auto h-[32px] mr-[30px] md:mr-[0] md:ml-[30px]"
+                className="mr-[30px] h-[32px] w-auto md:mr-[0] md:ml-[30px]"
                 color="#404040"
               />
             </Link>
@@ -100,7 +100,7 @@ const Footer = (footer: FooterType) => {
           {footer.smLinkedin && (
             <Link href={footer.smLinkedin} target="_blank">
               <SlSocialLinkedin
-                className="w-auto h-[29px] mr-[30px] md:mr-[0] md:ml-[30px]"
+                className="mr-[30px] h-[29px] w-auto md:mr-[0] md:ml-[30px]"
                 color="#404040"
               />
             </Link>
@@ -108,7 +108,7 @@ const Footer = (footer: FooterType) => {
           {footer.smInstagram && (
             <Link href={footer.smInstagram} target="_blank">
               <SlSocialInstagram
-                className="w-auto h-[27px] mr-[30px] md:mr-[0] md:ml-[30px]"
+                className="mr-[30px] h-[27px] w-auto md:mr-[0] md:ml-[30px]"
                 color="#404040"
               />
             </Link>

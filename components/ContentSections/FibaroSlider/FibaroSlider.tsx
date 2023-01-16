@@ -19,17 +19,17 @@ const FibaroSlider = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
-        <h3 className="text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px] xl:pr-[200px]">
+        <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:pr-[200px] xl3:text-[34px]">
           {children}
         </h3>
       ),
       p: ({ children }) => (
-        <p className="text-[#2c2c2c] text-[18px] pb-[20px] md:text-[16px] xl:text-[21px] leading-loose">
+        <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl3:text-[21px]">
           {children}
         </p>
       ),
       cta: ({ children }) => (
-        <div className="inline-block relative my-6 text-center px-[40px] py-[15px] font-bold text-[#000] border-2 border-[#000] cursor-pointer transition hover:text-white hover:bg-[#000]">
+        <div className="relative my-6 inline-block cursor-pointer border-2 border-[#000] px-[40px] py-[15px] text-center font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
           {children}
         </div>
       ),
@@ -62,9 +62,9 @@ const FibaroSlider = (block: Block) => {
     },
   };
   return (
-    <section className="pb-[75px] relative overflow-hidden bg-[#F8F8F8]">
-      <div className="w-full xl:w-[80%] mx-auto">
-        <div className="w-full flex justify-center bg-white py-[20px] md:w-1/2 md:hidden">
+    <section className="relative overflow-hidden bg-[#F8F8F8] py-[75px]">
+      <div className="mx-auto w-full xl:w-[80%]">
+        <div className="flex w-full justify-center bg-white py-[20px] md:hidden md:w-1/2">
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -93,7 +93,7 @@ const FibaroSlider = (block: Block) => {
           {block.content?.map(({ content, image }: Block) => (
             <SwiperSlide
               key={uuidv4()}
-              className="bg-white flex flex-col-reverse md:flex-row md:items-stretch"
+              className="flex flex-col-reverse bg-white md:flex-row md:items-stretch"
             >
               <div
                 className="px-[40px] py-[40px]
@@ -101,7 +101,7 @@ const FibaroSlider = (block: Block) => {
                 xl:w-[50%] xl:px-[40px]
               "
               >
-                <div className="hidden  py-[20px] md:w-1/2 md:block">
+                <div className="hidden  py-[20px] md:block md:w-1/2">
                   <Image
                     src={urlFor(block.image).url()}
                     alt={block.image.alt}
@@ -123,7 +123,7 @@ const FibaroSlider = (block: Block) => {
 
               <div
                 className="relative h-[50vw] w-full
-                md:w-[50%] md:h-auto
+                md:h-auto md:w-[50%]
               "
               >
                 <Image
@@ -135,7 +135,7 @@ const FibaroSlider = (block: Block) => {
               </div>
             </SwiperSlide>
           ))}
-          <div className="hidden mb-[40px] xl:block absolute left-[37%] bottom-[34px] -translate-x-1/2 z-10">
+          <div className="absolute left-[37%] bottom-[34px] z-10 mb-[40px] hidden -translate-x-1/2 xl:block">
             <Arrows swiper={mySwiper} />
           </div>
         </Swiper>

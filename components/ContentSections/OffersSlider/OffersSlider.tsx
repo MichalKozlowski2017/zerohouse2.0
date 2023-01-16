@@ -19,7 +19,7 @@ const OffersSlider = ({ offers }) => {
   const swiperRef2 = useRef<SwiperRef>();
 
   return (
-    <section className="relative bg-white lg:bg-transparent lg:py-[70px] xl:py-[130px]">
+    <section className="relative bg-white lg:bg-transparent lg:py-[75px]">
       <h2 className="absolute hidden px-[40px] text-[16px]  font-bold uppercase lg:block xl3:ml-[10%]">
         Aktualna oferta
       </h2>
@@ -40,18 +40,18 @@ const OffersSlider = ({ offers }) => {
             spaceBetween={0}
             slidesPerView={1}
             speed={800}
-            loop={false}
+            loop={true}
             allowTouchMove={false}
           >
             {offers?.map((offer: Offer) => (
               <SwiperSlide key={uuidv4()}>
                 <div className="bg-white px-[40px] pt-[40px]">
                   {offer.offerInfo.estate.length > 0 && (
-                    <h3 className="mb-[30px] text-[34px]">
+                    <h3 className="mb-[30px] text-[25px] xl3:text-[34px]">
                       {offer.offerInfo.estate}
                     </h3>
                   )}
-                  <p className="max-w-[360px] text-[21px] leading-[38px]">
+                  <p className="max-w-[360px] text-[18px] leading-[38px] xl3:text-[21px]">
                     Standard deweloperski<br></br>
                     {(() => {
                       if (offer.offerInfo.features.bedrooms > 0) {
@@ -129,11 +129,12 @@ const OffersSlider = ({ offers }) => {
             spaceBetween={10}
             slidesPerView={1.2}
             speed={800}
+            loop={true}
             onSlideChange={() => {
               mySwiper &&
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                mySwiper2.slideTo(swiperRef.current?.realIndex);
+                mySwiper2?.slideToLoop(swiperRef.current?.realIndex);
             }}
           >
             {offers?.map(({ image }) => (

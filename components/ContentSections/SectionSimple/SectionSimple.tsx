@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { motion } from 'framer-motion';
 
 const SectionSimple = (block: Block) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
@@ -11,7 +12,7 @@ const SectionSimple = (block: Block) => {
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
-        <h3 className="text-[#2c2c2c] text-[26px] pb-[30px] md:text-[25px] xl:text-[34px]">
+        <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl3:text-[34px]">
           {children}
         </h3>
       ),
@@ -20,12 +21,12 @@ const SectionSimple = (block: Block) => {
         <h5 className="mb-[30px] lg:mb-[130px]">{children}</h5>
       ),
       p: ({ children }) => (
-        <p className="text-[#2c2c2c] text-[18px] pb-[20px] md:text-[16px] xl:text-[21px] leading-loose">
+        <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl3:text-[21px]">
           {children}
         </p>
       ),
       cta: ({ children }) => (
-        <div className="inline-block relative my-6 text-center px-[40px] py-[15px] font-bold text-[#000] border-2 border-[#000] cursor-pointer transition hover:text-white hover:bg-[#000]">
+        <div className="relative my-6 inline-block cursor-pointer border-2 border-[#000] px-[40px] py-[15px] text-center font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
           {children}
         </div>
       ),
@@ -61,12 +62,31 @@ const SectionSimple = (block: Block) => {
   if (block.imageSize == 'smallImage') {
     return (
       <section
-        className="flex flex-col-reverse relative bg-[#F8F8F8]
-      md:flex-row md:py-[40px]
-      xl:pt-[140px]
+        className="relative flex flex-col-reverse bg-[#F8F8F8]
+      py-[75px] md:flex-row
       "
       >
-        <div className="relative h-auto w-full md:w-[40%]">
+        <motion.div
+          className="relative h-auto w-full md:w-[40%]"
+          initial={{
+            opacity: 0,
+            x: '-100%',
+          }}
+          whileInView={{
+            opacity: 1,
+            x: '0',
+          }}
+          transition={{
+            opacity: {
+              duration: 1,
+              ease: 'circOut',
+            },
+            x: {
+              duration: 1,
+              ease: 'circOut',
+            },
+          }}
+        >
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -78,12 +98,30 @@ const SectionSimple = (block: Block) => {
             }
             className="lg:block"
           />
-        </div>
-        <div
+        </motion.div>
+        <motion.div
           className="px-[40px] py-[40px]
           md:w-[60%] md:px-[8vw]
           xl:w-[70%] xl:px-[12vw]
         "
+          initial={{
+            opacity: 0,
+            y: '100px',
+          }}
+          whileInView={{
+            opacity: 1,
+            y: '0',
+          }}
+          transition={{
+            opacity: {
+              duration: 1,
+              ease: 'circOut',
+            },
+            y: {
+              duration: 1,
+              ease: 'circOut',
+            },
+          }}
         >
           <PortableText
             value={block.content}
@@ -91,18 +129,17 @@ const SectionSimple = (block: Block) => {
             // @ts-ignore
             components={myPortableTextComponents}
           />
-        </div>
+        </motion.div>
       </section>
     );
   } else {
     return (
       <section
-        className="flex flex-col-reverse relative bg-[#F8F8F8]
-      md:flex-row md:py-[40px]
-      xl:pt-[140px]
+        className="relative flex flex-col-reverse bg-[#F8F8F8]
+      md:flex-row md:py-[75px]
       "
       >
-        <div className="relative h-auto w-full md:w-[40%] z-10">
+        <div className="relative z-10 h-auto w-full md:w-[40%]">
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -112,7 +149,7 @@ const SectionSimple = (block: Block) => {
             onLoadingComplete={({ naturalWidth, naturalHeight }) =>
               setRatio(naturalWidth / naturalHeight)
             }
-            className="hidden md:block absolute"
+            className="absolute hidden md:block"
           />
         </div>
         <div

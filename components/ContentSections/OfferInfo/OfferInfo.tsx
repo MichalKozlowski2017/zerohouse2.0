@@ -155,7 +155,7 @@ const OfferInfo = ({ offerInfo }) => {
                   {level.rooms.rows.map((row: Row) => (
                     <li
                       key={row._key}
-                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] lg:text-[21px]"
+                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] xl2:text-[21px]"
                     >
                       {row.cells.map((cell: string, index: number) => {
                         return index === 0 ? (
@@ -186,7 +186,7 @@ const OfferInfo = ({ offerInfo }) => {
                   {level.rooms.rows.map((row: Row) => (
                     <li
                       key={row._key}
-                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] lg:text-[21px]"
+                      className="flex justify-between border-b border-black py-[15px] last:border-0 lg:py-[23px] xl2:text-[21px]"
                     >
                       {row.cells.map((cell: string, index: number) => {
                         return index === 0 ? (

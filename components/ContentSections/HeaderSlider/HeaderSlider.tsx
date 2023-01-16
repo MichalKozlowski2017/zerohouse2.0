@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import SwiperCore, { EffectFade, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-
 import SliderImage from './Slides/SliderImage';
 import SliderVideo from './Slides/SliderVideo';
 import type { headerSlide } from '@typings/headerSlide';
@@ -15,7 +14,21 @@ const HeaderSlider = ({ content }) => {
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
   return (
-    <div className="w-full relative mt-[-124px]">
+    <motion.div
+      className="relative mt-[-124px] w-full"
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        opacity: {
+          duration: 1,
+          ease: 'circOut',
+        },
+      }}
+    >
       <Swiper
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -62,17 +75,17 @@ const HeaderSlider = ({ content }) => {
           }
         })}
       </Swiper>
-      <div className="slider-pagination h-[2px] absolute bottom-[52px] left-[30px] z-50">
+      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-50 h-[2px]">
         {content?.map((slide: headerSlide, index: number) => (
           <div
-            className="slider-pagination--elem w-[6vw] h-full bg-white relative inline-block mr-[15px] cursor-pointer transition-colors"
+            className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer bg-white transition-colors"
             key={slide._key}
             onClick={() => swiperRef.current?.slideTo(index)}
           ></div>
         ))}
       </div>
 
-      <div className=" sm:block absolute bottom-[60px]  left-1/2 -translate-x-1/2 z-10 flex-col justify-center items-center">
+      <div className=" absolute bottom-[60px] left-1/2  z-10 -translate-x-1/2 flex-col items-center justify-center sm:block">
         <div>
           <Image
             src="/assets/images/scroll-icon.svg"
@@ -102,7 +115,7 @@ const HeaderSlider = ({ content }) => {
           />
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

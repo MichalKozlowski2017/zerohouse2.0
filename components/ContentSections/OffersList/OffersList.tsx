@@ -10,7 +10,7 @@ const OffersList = ({ offers }) => {
       className="relative 
 "
     >
-      <div className="offersList-wrapper mx-auto mt-[40px] flex flex-col flex-wrap px-[40px] lg:mt-[-80px] lg:flex-row xl3:max-w-[80%]">
+      <div className="offersList-wrapper mx-auto mt-[40px] flex flex-col flex-wrap px-[40px] lg:mt-[-80px] lg:flex-row xl:max-w-[80%] xl:px-0">
         {offers?.map((offer: Offer) => (
           <Link
             href={`/oferta-deweloperska/${offer.slug.current}`}

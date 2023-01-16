@@ -15,6 +15,7 @@ import offerInfo from './contentTypes/offerInfo'
 import offersList from './contentTypes/offersList'
 import offersSlider from './contentTypes/offersSlider'
 import packages from './contentTypes/packages'
+import gallery from './contentTypes/gallery'
 
 export const schemaTypes = [
   page,
@@ -34,4 +35,5 @@ export const schemaTypes = [
   offersList,
   offersSlider,
   packages,
+  gallery,
 ]

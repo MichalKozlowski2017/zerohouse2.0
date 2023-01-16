@@ -3,6 +3,7 @@ export interface Block {
   _type: string;
   name: string;
   image: {
+    _key: string;
     alt: string;
     asset: object;
   };

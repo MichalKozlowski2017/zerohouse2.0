@@ -66,7 +66,7 @@ const AlternativeSlider = (block: Block) => {
   };
 
   return (
-    <section className="relative">
+    <section className="relative pb-[75px]">
       <div
         className="relative
           z-10 bg-white

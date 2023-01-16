@@ -59,6 +59,7 @@ export default {
             {type: 'offersList'},
             {type: 'offersSlider'},
             {type: 'packages'},
+            {type: 'gallery'},
           ],
         },
       ],
