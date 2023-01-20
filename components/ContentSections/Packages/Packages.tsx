@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
 import { Pakiet } from '@typings/pakiet';
+import { motion } from 'framer-motion';
 
 const Packages = (block: Block) => {
   const [mySwiper, setMySwiper] = useState({});
@@ -27,13 +28,53 @@ const Packages = (block: Block) => {
   const swiperRef = useRef<SwiperRef>();
   const swiperRef2 = useRef<SwiperRef>();
 
+  const animations = {
+    right: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    left: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
+
   return (
     <section className="relative bg-white md:bg-transparent lg:py-[75px]">
       <h2 className="relative px-[40px] pt-[40px] text-[16px] font-bold uppercase md:hidden">
         NASZE PAKIETY
       </h2>
 
-      <div className="relative mt-[-140px] hidden md:absolute md:bottom-[300px] md:z-20 md:block md:w-[50%] lg:bottom-[350px] lg:mt-[40px] xl:bottom-[660px]">
+      <motion.div
+        className="relative mt-[-140px] hidden md:absolute md:bottom-[300px] md:z-20 md:block md:w-[50%] lg:bottom-[350px] lg:mt-[40px] xl:bottom-[660px]"
+        variants={animations.left}
+        initial="hidden"
+        whileInView="show"
+      >
         <Swiper
           onSwiper={(swiper2) => {
             swiperRef2.current = swiper2;
@@ -63,8 +104,13 @@ const Packages = (block: Block) => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-      <div className="packages-slider relative overflow-visible bg-white md:ml-auto md:mt-[140px] md:w-[75%] lg:mt-[220px] xl:mb-[250px]">
+      </motion.div>
+      <motion.div
+        className="packages-slider relative overflow-visible bg-white md:ml-auto md:mt-[140px] md:w-[75%] lg:mt-[220px] xl:mb-[250px]"
+        variants={animations.right}
+        initial="hidden"
+        whileInView="show"
+      >
         <div className="px-[40px] pt-[40px] md:hidden">
           <Arrows swiper={mySwiper} />
         </div>
@@ -161,7 +207,7 @@ const Packages = (block: Block) => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

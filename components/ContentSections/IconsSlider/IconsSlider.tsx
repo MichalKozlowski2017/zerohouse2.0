@@ -2,7 +2,6 @@ import { Block } from '@typings/block';
 import { v4 as uuidv4 } from 'uuid';
 import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
-
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,11 +10,41 @@ import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
+import { motion } from 'framer-motion';
 
 const IconsSlider = (block: Block) => {
   const [mySwiper, setMySwiper] = useState({});
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
+
+  const animations = {
+    container: {
+      show: {
+        opacity: 1,
+        x: '0',
+        transition: {
+          staggerChildren: 0.2,
+          delayChildren: 0.8,
+          default: { duration: 1 },
+          ease: 'inOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        x: '20%',
+      },
+    },
+
+    icons: {
+      show: {
+        opacity: 1,
+      },
+      hidden: {
+        opacity: 0,
+      },
+    },
+  };
+
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
@@ -31,7 +60,12 @@ const IconsSlider = (block: Block) => {
     },
   };
   return (
-    <section className="relative items-stretch justify-end overflow-hidden bg-[#F8F8F8] pb-[75px] md:flex">
+    <motion.section
+      className="relative items-stretch justify-end overflow-hidden bg-[#F8F8F8] pb-[75px] md:flex"
+      variants={animations.container}
+      initial="hidden"
+      whileInView="show"
+    >
       <div
         className="iconsSlider-pagination relative flex justify-around bg-white px-[40px] py-[80px] 
         md:w-[40%] md:px-[5px]
@@ -40,7 +74,8 @@ const IconsSlider = (block: Block) => {
       "
       >
         {block.content?.map(({ image }: Block, index) => (
-          <button
+          <motion.button
+            variants={animations.icons}
             key={uuidv4()}
             data-id={index}
             onClick={(event) => {
@@ -62,7 +97,7 @@ const IconsSlider = (block: Block) => {
               200px"
               style={{ objectFit: 'contain', pointerEvents: 'none' }}
             />
-          </button>
+          </motion.button>
         ))}
       </div>
       <div
@@ -118,7 +153,7 @@ const IconsSlider = (block: Block) => {
         </Swiper>
         <Arrows swiper={mySwiper} />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

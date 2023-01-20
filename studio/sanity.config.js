@@ -17,6 +17,11 @@ const hiddenDocTypes = (listItem) =>
     'alternativeSlider',
     'sectionKontakt',
     'panorama',
+    'offerInfo',
+    'offersList',
+    'offersSlider',
+    'packages',
+    'gallery',
   ].includes(listItem.getId())
 
 export default defineConfig({

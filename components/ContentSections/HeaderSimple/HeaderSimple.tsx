@@ -3,6 +3,7 @@ import type { Block } from '@typings/block';
 import Image from 'next/image';
 import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { motion } from 'framer-motion';
 
 const HeaderSimple = (block: Block) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
@@ -20,24 +21,68 @@ const HeaderSimple = (block: Block) => {
       ),
     },
   };
+
+  const animations = {
+    text: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+    image: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+  };
+
   return (
     <section
       className="relative flex flex-col-reverse bg-[#F8F8F8]
     "
     >
       <div className="relative flex h-auto justify-end pt-[15vw] md:pt-0">
-        <Image
-          src={urlFor(block.image).url()}
-          alt={block.image.alt}
-          width={1425}
-          height={1425 / ratio}
-          style={{ objectFit: 'contain', width: '78%' }}
-          onLoadingComplete={({ naturalWidth, naturalHeight }) =>
-            setRatio(naturalWidth / naturalHeight)
-          }
-        ></Image>
+        <motion.div
+          className="relative w-[78%]"
+          variants={animations.image}
+          initial="hidden"
+          whileInView="show"
+        >
+          <Image
+            src={urlFor(block.image).url()}
+            alt={block.image.alt}
+            width={1425}
+            height={1425 / ratio}
+            style={{ objectFit: 'cover', marginLeft: 'auto' }}
+            onLoadingComplete={({ naturalWidth, naturalHeight }) =>
+              setRatio(naturalWidth / naturalHeight)
+            }
+          ></Image>
+        </motion.div>
+
         {block.name === 'Kontakt Header' ? (
-          <div
+          <motion.div
             className="absolute bottom-[5vw] left-[5vw] bg-white p-[20px]
               text-[21px] xs:left-[13vw]
               xs:text-[24px] sm:left-[13vw]
@@ -47,6 +92,9 @@ const HeaderSimple = (block: Block) => {
               xl:text-[60px] xl3:left-[230px] xl3:bottom-[130px]
               xl3:text-[89px]
             "
+            variants={animations.text}
+            whileInView="show"
+            initial="hidden"
           >
             <PortableText
               value={block.content}
@@ -54,9 +102,9 @@ const HeaderSimple = (block: Block) => {
               // @ts-ignore
               components={myPortableTextComponents}
             />
-          </div>
+          </motion.div>
         ) : (
-          <div
+          <motion.div
             className="absolute top-[5vw] left-[5vw] text-[24px]
               xs:left-[13vw] xs:text-[31px]
               sm:left-[13vw] sm:text-[31px]
@@ -65,6 +113,9 @@ const HeaderSimple = (block: Block) => {
               xl:left-[15vw] xl:top-[7vw] xl:text-[60px]
               xl3:left-[230px] xl3:top-[130px] xl3:text-[89px]
             "
+            variants={animations.text}
+            whileInView="show"
+            initial="hidden"
           >
             <PortableText
               value={block.content}
@@ -72,7 +123,7 @@ const HeaderSimple = (block: Block) => {
               // @ts-ignore
               components={myPortableTextComponents}
             />
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

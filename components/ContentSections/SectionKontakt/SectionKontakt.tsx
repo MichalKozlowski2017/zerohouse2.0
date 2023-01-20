@@ -4,10 +4,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { motion } from 'framer-motion';
 
 const SectionKontakt = (block: Block) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
 
+  const animations = {
+    right: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    left: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
@@ -64,7 +99,12 @@ const SectionKontakt = (block: Block) => {
       xl:pt-[150px]
       "
       >
-        <div className="relative z-10 h-auto w-full md:w-[40%]">
+        <motion.div
+          className="relative z-10 h-auto w-full md:w-[40%]"
+          variants={animations.left}
+          initial="hidden"
+          whileInView="show"
+        >
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -76,8 +116,8 @@ const SectionKontakt = (block: Block) => {
             }
             className="lg:block"
           />
-        </div>
-        <div
+        </motion.div>
+        <motion.div
           className="relative mt-[40px]
           overflow-visible
           bg-white px-[40px]
@@ -85,13 +125,16 @@ const SectionKontakt = (block: Block) => {
           md:px-[8vw]
           md:before:absolute
           md:before:left-[-15vw]
-          md:before:h-[calc(100%-40px)]
+          md:before:top-0
+          md:before:h-full
           md:before:w-[15vw]
           md:before:bg-white
 
           lg:mt-[90px] xl:mt-[200px] xl:w-[70%] xl:py-[90px] xl:px-[12vw]
-          xl:before:h-[calc(100%-90px)]
         "
+          variants={animations.right}
+          initial="hidden"
+          whileInView="show"
         >
           <PortableText
             value={block.content}
@@ -99,7 +142,7 @@ const SectionKontakt = (block: Block) => {
             // @ts-ignore
             components={myPortableTextComponents}
           />
-        </div>
+        </motion.div>
       </section>
     );
   } else {
@@ -110,21 +153,24 @@ const SectionKontakt = (block: Block) => {
       xl:pt-[140px]
       "
       >
-        <div
+        <motion.div
           className="relative mt-[40px]
           overflow-visible
           bg-white px-[40px]
           py-[40px] md:w-[60%]
           md:px-[8vw]
           md:before:absolute
-          md:before:left-[-15vw]
-          md:before:h-[calc(100%-40px)]
+          md:before:right-[-15vw]
+          md:before:top-0
+          md:before:h-full
           md:before:w-[15vw]
           md:before:bg-white
 
           lg:mt-[90px] xl:mt-[200px] xl:w-[70%] xl:py-[90px] xl:px-[12vw]
-          xl:before:h-[calc(100%-90px)]
         "
+          variants={animations.left}
+          initial="hidden"
+          whileInView="show"
         >
           <PortableText
             value={block.content}
@@ -132,8 +178,13 @@ const SectionKontakt = (block: Block) => {
             // @ts-ignore
             components={myPortableTextComponents}
           />
-        </div>
-        <div className="relative z-10 h-auto w-full md:w-[40%]">
+        </motion.div>
+        <motion.div
+          className="relative z-10 h-auto w-full md:w-[40%]"
+          variants={animations.right}
+          initial="hidden"
+          whileInView="show"
+        >
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -145,7 +196,7 @@ const SectionKontakt = (block: Block) => {
             }
             className="lg:block"
           />
-        </div>
+        </motion.div>
       </section>
     );
   }

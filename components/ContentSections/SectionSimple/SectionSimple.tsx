@@ -9,6 +9,41 @@ import { motion } from 'framer-motion';
 const SectionSimple = (block: Block) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
 
+  const animations = {
+    text: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    image: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
+
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
@@ -68,24 +103,9 @@ const SectionSimple = (block: Block) => {
       >
         <motion.div
           className="relative h-auto w-full md:w-[40%]"
-          initial={{
-            opacity: 0,
-            x: '-100%',
-          }}
-          whileInView={{
-            opacity: 1,
-            x: '0',
-          }}
-          transition={{
-            opacity: {
-              duration: 1,
-              ease: 'circOut',
-            },
-            x: {
-              duration: 1,
-              ease: 'circOut',
-            },
-          }}
+          variants={animations.image}
+          initial="hidden"
+          whileInView="show"
         >
           <Image
             src={urlFor(block.image).url()}
@@ -104,24 +124,9 @@ const SectionSimple = (block: Block) => {
           md:w-[60%] md:px-[8vw]
           xl:w-[70%] xl:px-[12vw]
         "
-          initial={{
-            opacity: 0,
-            y: '100px',
-          }}
-          whileInView={{
-            opacity: 1,
-            y: '0',
-          }}
-          transition={{
-            opacity: {
-              duration: 1,
-              ease: 'circOut',
-            },
-            y: {
-              duration: 1,
-              ease: 'circOut',
-            },
-          }}
+          variants={animations.text}
+          initial="hidden"
+          whileInView="show"
         >
           <PortableText
             value={block.content}
@@ -139,7 +144,12 @@ const SectionSimple = (block: Block) => {
       md:flex-row md:py-[75px]
       "
       >
-        <div className="relative z-10 h-auto w-full md:w-[40%]">
+        <motion.div
+          className="relative z-10 h-auto w-full md:w-[40%]"
+          variants={animations.image}
+          initial="hidden"
+          whileInView="show"
+        >
           <Image
             src={urlFor(block.image).url()}
             alt={block.image.alt}
@@ -151,12 +161,15 @@ const SectionSimple = (block: Block) => {
             }
             className="absolute hidden md:block"
           />
-        </div>
-        <div
+        </motion.div>
+        <motion.div
           className="px-[40px] py-[40px]
           md:w-[60%] md:px-[8vw]
           xl:w-[70%] xl:px-[12vw]
         "
+          variants={animations.text}
+          initial="hidden"
+          whileInView="show"
         >
           <PortableText
             value={block.content}
@@ -164,7 +177,7 @@ const SectionSimple = (block: Block) => {
             // @ts-ignore
             components={myPortableTextComponents}
           />
-        </div>
+        </motion.div>
       </section>
     );
   }

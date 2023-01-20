@@ -18,13 +18,19 @@ const HeaderSlider = ({ content }) => {
       className="relative mt-[-124px] w-full"
       initial={{
         opacity: 0,
+        scale: 1.1,
       }}
       whileInView={{
         opacity: 1,
+        scale: 1,
       }}
       transition={{
         opacity: {
           duration: 1,
+          ease: 'circOut',
+        },
+        scale: {
+          duration: 2,
           ease: 'circOut',
         },
       }}

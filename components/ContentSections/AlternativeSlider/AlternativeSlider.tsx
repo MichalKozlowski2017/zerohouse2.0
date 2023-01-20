@@ -11,6 +11,7 @@ import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
+import { motion } from 'framer-motion';
 
 const AlternativeSlider = (block: Block) => {
   const [mySwiper, setMySwiper] = useState({});
@@ -18,6 +19,41 @@ const AlternativeSlider = (block: Block) => {
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
   const swiperRef2 = useRef<SwiperRef>();
+
+  const animations = {
+    text: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+    image: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+  };
 
   const myPortableTextComponents = {
     block: {
@@ -67,7 +103,7 @@ const AlternativeSlider = (block: Block) => {
 
   return (
     <section className="relative pb-[75px]">
-      <div
+      <motion.div
         className="relative
           z-10 bg-white
           px-[40px] 
@@ -79,6 +115,9 @@ const AlternativeSlider = (block: Block) => {
           xl3:left-[230px]
           xl3:mt-[-150px]
           "
+        variants={animations.text}
+        initial="hidden"
+        whileInView="show"
       >
         <Swiper
           onSwiper={(swiper) => {
@@ -118,8 +157,13 @@ const AlternativeSlider = (block: Block) => {
             <Arrows swiper={mySwiper} />
           </div>
         </Swiper>
-      </div>
-      <div className="alt-slider relative w-full">
+      </motion.div>
+      <motion.div
+        className="alt-slider relative w-full"
+        variants={animations.image}
+        initial="hidden"
+        whileInView="show"
+      >
         <div className="relative ml-auto w-full md:mt-[-15vw] md:w-[60%] lg:mt-[-9vw] xl:mt-[-10vw] xl:w-[65%] xl3:mt-[-233px]">
           <Swiper
             onSwiper={(swiper2) => {
@@ -150,7 +194,7 @@ const AlternativeSlider = (block: Block) => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

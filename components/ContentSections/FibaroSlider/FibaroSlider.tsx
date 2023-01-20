@@ -11,11 +11,58 @@ import SwiperCore, { EffectFade, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
+import { motion } from 'framer-motion';
 
 const FibaroSlider = (block: Block) => {
   const [mySwiper, setMySwiper] = useState({});
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
+
+  const animations = {
+    container: {
+      show: {
+        scaleX: 1,
+        opacity: 1,
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        scaleX: 1.2,
+        opacity: 0,
+      },
+    },
+    image: {
+      show: {
+        opacity: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        x: '15%',
+      },
+    },
+    text: {
+      show: {
+        opacity: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        x: '-15%',
+      },
+    },
+  };
+
   const myPortableTextComponents = {
     block: {
       h3: ({ children }) => (
@@ -63,7 +110,12 @@ const FibaroSlider = (block: Block) => {
   };
   return (
     <section className="relative overflow-hidden bg-[#F8F8F8] py-[75px]">
-      <div className="mx-auto w-full xl:w-[80%]">
+      <motion.div
+        className="mx-auto w-full xl:w-[80%]"
+        variants={animations.container}
+        initial="hidden"
+        whileInView="show"
+      >
         <div className="flex w-full justify-center bg-white py-[20px] md:hidden md:w-1/2">
           <Image
             src={urlFor(block.image).url()}
@@ -95,11 +147,14 @@ const FibaroSlider = (block: Block) => {
               key={uuidv4()}
               className="flex flex-col-reverse bg-white md:flex-row md:items-stretch"
             >
-              <div
+              <motion.div
                 className="px-[40px] py-[40px]
                 md:w-[50%] md:px-[6vw]
                 xl:w-[50%] xl:px-[40px]
               "
+                variants={animations.text}
+                initial="hidden"
+                whileInView="show"
               >
                 <div className="hidden  py-[20px] md:block md:w-1/2">
                   <Image
@@ -119,12 +174,15 @@ const FibaroSlider = (block: Block) => {
                   // @ts-ignore
                   components={myPortableTextComponents}
                 />
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
                 className="relative h-[50vw] w-full
                 md:h-auto md:w-[50%]
               "
+                variants={animations.image}
+                initial="hidden"
+                whileInView="show"
               >
                 <Image
                   src={urlFor(image).url()}
@@ -132,14 +190,14 @@ const FibaroSlider = (block: Block) => {
                   fill
                   style={{ objectFit: 'cover' }}
                 />
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
           <div className="absolute left-[37%] bottom-[34px] z-10 mb-[40px] hidden -translate-x-1/2 xl:block">
             <Arrows swiper={mySwiper} />
           </div>
         </Swiper>
-      </div>
+      </motion.div>
     </section>
   );
 };

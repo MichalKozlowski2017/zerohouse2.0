@@ -10,22 +10,80 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
 import { Offer } from '@typings/offer';
+import { motion } from 'framer-motion';
 
 const OffersSlider = ({ offers }) => {
   const [mySwiper, setMySwiper] = useState({});
   const [mySwiper2, setMySwiper2] = useState(null);
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
-  const swiperRef2 = useRef<SwiperRef>();
+
+  const animations = {
+    h2: {
+      show: {
+        opacity: 1,
+        y: '0',
+        transition: {
+          duration: 0.7,
+        },
+      },
+      hidden: {
+        opacity: 0,
+        y: '20px',
+      },
+    },
+    images: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    text: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
 
   return (
     <section className="relative bg-white lg:bg-transparent lg:py-[75px]">
-      <h2 className="absolute hidden px-[40px] text-[16px]  font-bold uppercase lg:block xl3:ml-[10%]">
+      <motion.h2
+        className="absolute hidden px-[40px] text-[16px]  font-bold uppercase lg:block xl3:ml-[10%]"
+        variants={animations.h2}
+        initial="hidden"
+        whileInView="show"
+      >
         Aktualna oferta
-      </h2>
+      </motion.h2>
       <div className="flex w-full  flex-col lg:flex-row">
         {/* slider 1 */}
-        <div className="slider-1 bg-white lg:mt-[250px] lg:w-[65%] lg:pr-[27%] xl3:ml-[10%] xl3:mt-[330px] xl3:w-[50%]">
+        <motion.div
+          className="slider-1 bg-white lg:mt-[250px] lg:w-[65%] lg:pr-[30%] xl:pr-[33%] xl3:ml-[10%] xl3:mt-[330px] xl3:w-[50%] xl3:pr-[27%]"
+          variants={animations.text}
+          initial="hidden"
+          whileInView="show"
+        >
           <h2 className="relative px-[40px] pt-[40px] text-[16px] font-bold uppercase lg:hidden">
             Aktualna oferta
           </h2>
@@ -113,10 +171,15 @@ const OffersSlider = ({ offers }) => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </motion.div>
 
         {/* slider 2 */}
-        <div className="slider-2 relative lg:absolute lg:right-0 lg:w-[59.7%] xl:w-[64.7%]">
+        <motion.div
+          className="slider-2 relative lg:absolute lg:right-0 lg:w-[59.7%] xl:w-[64.7%]"
+          variants={animations.images}
+          initial="hidden"
+          whileInView="show"
+        >
           <div className="px-[40px] pb-[20px] lg:hidden">
             <Arrows swiper={mySwiper} />
           </div>
@@ -153,7 +216,7 @@ const OffersSlider = ({ offers }) => {
           <div className="relative z-10 hidden px-[40px] pb-[20px] lg:mt-[20px] lg:block lg:px-0">
             <Arrows swiper={mySwiper} />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

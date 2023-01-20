@@ -73,6 +73,41 @@ const Panorama = (block: Block) => {
     },
   ];
 
+  const animations = {
+    right: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    left: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
+
   const handleScene = (arg: string, title: React.SetStateAction<string>) => {
     loadScene(arg);
     setScene(title);
@@ -137,7 +172,7 @@ const Panorama = (block: Block) => {
     xl:pt-[140px]
     "
     >
-      <div
+      <motion.div
         className="relative mt-[40px]
           overflow-visible
           bg-white px-[40px]
@@ -150,10 +185,10 @@ const Panorama = (block: Block) => {
           lg:before:w-[100%]
           lg:before:bg-white
           xl:px-[10%]
-
-        
-
         "
+        variants={animations.left}
+        initial="hidden"
+        whileInView="show"
       >
         <PortableText
           value={block.content}
@@ -161,8 +196,13 @@ const Panorama = (block: Block) => {
           // @ts-ignore
           components={myPortableTextComponents}
         />
-      </div>
-      <div className="mx-auto w-full lg:px-[60px] xl:w-[80%] xl:px-0">
+      </motion.div>
+      <motion.div
+        className="mx-auto w-full lg:px-[60px] xl:w-[80%] xl:px-0"
+        variants={animations.right}
+        initial="hidden"
+        whileInView="show"
+      >
         <div className="relative h-[400px] max-h-[730px] w-full md:h-[600px] xl:h-[730px]">
           <div className="absolute top-[20px] right-[20px] z-10">
             <button
@@ -207,7 +247,7 @@ const Panorama = (block: Block) => {
             }}
           ></ReactPannellum>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

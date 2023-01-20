@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { urlFor } from '@lib/sanity';
 import { v4 as uuidv4 } from 'uuid';
+import { motion } from 'framer-motion';
 
 type Row = {
   cells: [];
@@ -10,12 +11,93 @@ type Row = {
 
 const OfferInfo = ({ offerInfo }) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
+
+  const animations = {
+    header: {
+      show: {
+        y: '0',
+        opacity: 1,
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        y: '100px',
+        opacity: 0,
+      },
+    },
+    features: {
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.2,
+          delayChildren: 0.8,
+          default: { duration: 0.5 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+      },
+    },
+    feature: {
+      show: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          default: { duration: 0.7 },
+        },
+      },
+      hidden: {
+        scale: 0.9,
+        opacity: 0,
+      },
+    },
+    right: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    left: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+  };
   return (
     <section
       className="relative flex flex-col pb-[40px]
     "
     >
-      <div className="relative mx-auto flex w-full flex-col justify-between bg-white p-[40px] sm:flex-row sm:items-end lg:mt-[-60px] lg:max-w-[80%]">
+      <motion.div
+        variants={animations.header}
+        initial="hidden"
+        whileInView="show"
+        className="relative mx-auto flex w-full flex-col justify-between bg-white p-[40px] sm:flex-row sm:items-end lg:mt-[-60px] lg:max-w-[80%]"
+      >
         {offerInfo.status == 'available' && (
           <div className="absolute top-[20px] right-[20px] z-10 rounded-3xl bg-green-700 px-[20px] py-[1px] text-[14px] text-white sm:right-[40px] lg:top-[40px]">
             <span>Dostępne</span>
@@ -48,11 +130,19 @@ const OfferInfo = ({ offerInfo }) => {
             {offerInfo.price.toLocaleString('pl-PL')} zł
           </span>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="relative mx-auto flex w-full max-w-[820px] flex-col items-center py-[40px] text-center sm:flex-row sm:items-start sm:justify-around">
+      <motion.div
+        className="relative mx-auto flex w-full max-w-[820px] flex-col items-center py-[40px] text-center sm:flex-row sm:items-start sm:justify-around"
+        variants={animations.features}
+        initial="hidden"
+        whileInView="show"
+      >
         {offerInfo.features.bedrooms > 0 && (
-          <div className="my-[40px] sm:w-[120px]">
+          <motion.div
+            variants={animations.feature}
+            className="my-[40px] sm:w-[120px]"
+          >
             <Image
               src={'/assets/images/bedroom.svg'}
               alt="Sypialnie"
@@ -66,11 +156,14 @@ const OfferInfo = ({ offerInfo }) => {
                 {offerInfo.features.bedrooms == 1 ? 'SYPIALNIA' : 'SYPIALNIE'}
               </span>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {offerInfo.features.bathrooms > 0 && (
-          <div className="my-[40px] sm:w-[120px]">
+          <motion.div
+            className="my-[40px] sm:w-[120px]"
+            variants={animations.feature}
+          >
             <Image
               src={'/assets/images/bathroom.svg'}
               alt="Łazienki"
@@ -84,11 +177,14 @@ const OfferInfo = ({ offerInfo }) => {
                 {offerInfo.features.bathrooms == 1 ? 'ŁAZIENKA' : 'ŁAZIENKI'}
               </span>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {offerInfo.features.garden > 0 && (
-          <div className="my-[40px] sm:w-[120px]">
+          <motion.div
+            className="my-[40px] sm:w-[120px]"
+            variants={animations.feature}
+          >
             <Image
               src={'/assets/images/garden.svg'}
               alt="Ogród"
@@ -101,11 +197,14 @@ const OfferInfo = ({ offerInfo }) => {
                 {offerInfo.features.garden} m<sup>2</sup> OGRODU
               </span>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {offerInfo.features.parking > 0 && (
-          <div className="my-[40px] sm:w-[120px]">
+          <motion.div
+            className="my-[40px] sm:w-[120px]"
+            variants={animations.feature}
+          >
             <Image
               src={'/assets/images/garage.svg'}
               alt="Miejsce parkingowe"
@@ -121,9 +220,9 @@ const OfferInfo = ({ offerInfo }) => {
                   : 'MIEJSCA PARKINGOWE'}
               </span>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
 
       {/* Pomieszczenia */}
       <div className="mx-auto">
@@ -133,7 +232,12 @@ const OfferInfo = ({ offerInfo }) => {
               key={uuidv4()}
               className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
             >
-              <div className="relative mx-auto w-[70%]">
+              <motion.div
+                className="relative mx-auto w-[70%]"
+                variants={animations.left}
+                initial="hidden"
+                whileInView="show"
+              >
                 <Image
                   src={urlFor(level.image).url()}
                   alt={level.image.alt}
@@ -145,9 +249,14 @@ const OfferInfo = ({ offerInfo }) => {
                   }
                   className="lg:block"
                 />
-              </div>
+              </motion.div>
 
-              <div className="w-full p-[40px] md:max-w-[450px] lg:px-0">
+              <motion.div
+                className="w-full p-[40px] md:max-w-[450px] lg:px-0"
+                variants={animations.right}
+                initial="hidden"
+                whileInView="show"
+              >
                 <h4 className="mb-[40px] text-[16px] font-bold">
                   {level.title}
                 </h4>
@@ -171,14 +280,19 @@ const OfferInfo = ({ offerInfo }) => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
           ) : (
             <div
               key={uuidv4()}
               className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
             >
-              <div className="ml-auto w-full p-[40px] md:max-w-[450px] lg:px-0">
+              <motion.div
+                className="ml-auto w-full p-[40px] md:max-w-[450px] lg:px-0"
+                variants={animations.left}
+                initial="hidden"
+                whileInView="show"
+              >
                 <h4 className="mb-[40px] text-[16px] font-bold">
                   {level.title}
                 </h4>
@@ -202,8 +316,13 @@ const OfferInfo = ({ offerInfo }) => {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="relative mx-auto w-[70%]">
+              </motion.div>
+              <motion.div
+                className="relative mx-auto w-[70%]"
+                variants={animations.right}
+                initial="hidden"
+                whileInView="show"
+              >
                 <Image
                   src={urlFor(level.image).url()}
                   alt={level.image.alt}
@@ -215,7 +334,7 @@ const OfferInfo = ({ offerInfo }) => {
                   }
                   className="lg:block"
                 />
-              </div>
+              </motion.div>
             </div>
           );
         })}

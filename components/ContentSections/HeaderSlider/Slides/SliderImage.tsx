@@ -8,7 +8,7 @@ const SliderImage = ({ image, content }) => {
   const myPortableTextComponents = {
     block: {
       h2: ({ children }) => (
-        <h2 className="text-[2em] font-bold uppercase leading-[1.2] text-white">
+        <h2 className="text-[2em] font-bold	 uppercase leading-[1.2] text-white">
           {children}
         </h2>
       ),

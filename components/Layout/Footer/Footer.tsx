@@ -9,41 +9,102 @@ import {
   SlSocialLinkedin,
   SlSocialInstagram,
 } from 'react-icons/sl';
+import { motion } from 'framer-motion';
 
 const Footer = (footer: FooterType) => {
+  const animations = {
+    logos: {
+      show: {
+        opacity: 1,
+        scaleY: 1,
+        transition: {
+          default: { ease: 'circOut' },
+          staggerChildren: 0.2,
+          delayChildren: 0.5,
+          scaleY: {
+            duration: 0.5,
+            ease: 'circOut',
+          },
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scaleY: 0.1,
+      },
+    },
+    logo: {
+      show: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 0.3,
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        scale: 0.5,
+        opacity: 0,
+      },
+    },
+    footer: {
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 0.3,
+          duration: 1,
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        y: '10%',
+      },
+    },
+  };
   return (
     <footer className="relative mt-[75px] w-full">
-      <div
+      <motion.div
         className="relative flex flex-col items-center justify-between bg-white px-[40px] py-[40px]
       md:flex-row lg:py-[70px]
       lg:px-[6vw]
       xl:py-[90px] xl:px-[14vw]
       xl3:py-[100px] xl3:px-[362px]
       "
+        variants={animations.logos}
+        initial="hidden"
+        whileInView="show"
       >
         {footer.logos?.map((logo, index) => (
           <Link
             href={logo.logoLink}
+            key={logo._key}
             target="_blank"
             rel="nofollow noindex"
-            key={logo._key}
-            className={`footer-logo-${index} relative 
-            h-[110px] w-[190px]
-            `}
           >
-            <Image
-              src={urlFor(logo.image).url()}
-              alt={logo.image.alt}
-              fill
-              sizes="(max-width: 768px) 200px,
+            <motion.div
+              variants={animations.logo}
+              className={`relative footer-logo-${index} relative inline-block h-[110px] w-[190px]`}
+            >
+              <Image
+                src={urlFor(logo.image).url()}
+                alt={logo.image.alt}
+                fill
+                sizes="(max-width: 768px) 200px,
         (max-width: 1200px) 200px,
         200px"
-              style={{ objectFit: 'contain', pointerEvents: 'none' }}
-            />
+                style={{ objectFit: 'contain', pointerEvents: 'none' }}
+              />
+            </motion.div>
           </Link>
         ))}
-      </div>
-      <div className="px-[40px] py-[40px] text-[18px] md:flex md:items-start md:justify-between lg:py-[70px] lg:px-[6vw] xl:py-[90px] xl:px-[14vw] xl3:px-[10%]">
+      </motion.div>
+      <motion.div
+        className="px-[40px] py-[40px] text-[18px] md:flex md:items-start md:justify-between lg:py-[70px] lg:px-[6vw] xl:py-[90px] xl:px-[14vw] xl3:px-[10%]"
+        variants={animations.footer}
+        initial="hidden"
+        whileInView="show"
+      >
         <div className="lg:flex">
           <div className="mr-[150px] pb-[40px] lg:mr-[14vw] xl3:mr-[300px]">
             <h5 className="footer-adres relative mb-[20px] font-semibold uppercase">
@@ -114,7 +175,7 @@ const Footer = (footer: FooterType) => {
             </Link>
           )}
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };

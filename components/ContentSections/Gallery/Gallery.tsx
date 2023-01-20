@@ -34,26 +34,100 @@ const Gallery = (block: Block) => {
     handleResize();
     window.addEventListener('resize', handleResize);
   });
+
+  const animations = {
+    right: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '10%',
+      },
+    },
+    left: {
+      show: {
+        opacity: 1,
+        scale: 1,
+        x: '0',
+        transition: {
+          default: { duration: 1.4 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        x: '-10%',
+      },
+    },
+    miniatures: {
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0.2,
+          default: { duration: 0.5 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+      },
+    },
+    miniature: {
+      show: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          default: { duration: 0.2 },
+          ease: 'circOut',
+        },
+      },
+      hidden: {
+        opacity: 0,
+        scale: 0.8,
+      },
+    },
+  };
   return (
     <section className="gallery py-[40px] md:py-[70px]">
-      <div className="relative bg-white p-[40px] md:ml-auto md:w-[calc(50%-5px)] md:pl-[120px] md:before:absolute md:before:bottom-[-80px] md:before:left-0 md:before:h-[80px] md:before:w-full md:before:bg-white xl:w-[calc(50%-10px)] xl:pl-[calc(1220px/6)]">
+      <motion.div
+        className="relative bg-white p-[40px] md:ml-auto md:w-[calc(50%-5px)] md:pl-[120px] md:before:absolute md:before:bottom-[-80px] md:before:left-0 md:before:h-[80px] md:before:w-full md:before:bg-white xl:w-[calc(50%-10px)] xl:pl-[calc(1220px/6)]"
+        variants={animations.right}
+        initial="hidden"
+        whileInView="show"
+      >
         <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:text-[34px]">
           Galeria
         </h3>
         <p className="pb-[20px] text-[18px] leading-loose text-[#2c2c2c] md:text-[16px] xl:text-[21px]">
           Zobacz naszą galerię zdjęć <br />i poczuj się jak w domu
         </p>
-      </div>
+      </motion.div>
 
       <div>
-        <div className=" relative hidden w-[700px] grid-flow-row grid-cols-6 justify-center md:mx-auto md:grid md:gap-[20px] lg:w-[960px] xl:w-[1220px] xl3:w-[1536px]">
+        <motion.div
+          className=" relative hidden w-[700px] grid-flow-row grid-cols-6 justify-center md:mx-auto md:grid md:gap-[20px] lg:w-[960px] xl:w-[1220px] xl3:w-[1536px]"
+          variants={animations.miniatures}
+          initial="hidden"
+          whileInView="show"
+        >
           {block.content?.map((image: Block['image'], index: number) => (
-            <div
+            <motion.div
               className={`relative h-[100px] w-[100%] lg:h-[calc(900px/6)] xl:h-[calc(1220px/6)] xl3:h-[calc(1450px/6)] item-${index} cursor-pointer`}
               key={image._key}
               onClick={() => {
                 handleSliderShow(index);
               }}
+              variants={animations.miniature}
             >
               <Image
                 src={urlFor(image).url()}
@@ -62,9 +136,9 @@ const Gallery = (block: Block) => {
                 sizes="200px"
                 style={{ objectFit: 'cover', pointerEvents: 'none' }}
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <AnimatePresence>
           {(isMobile || sliderShow) && (
             <motion.div
