@@ -21,8 +21,8 @@ export default {
         {
           type: 'block',
           styles: [
-            {title: 'Title', value: 'h3'},
-            {title: 'Subtitle', value: 'h4'},
+            {title: 'Title', value: 'h2'},
+            {title: 'Subtitle', value: 'h3'},
             {title: 'CTA', value: 'cta'},
           ],
         },

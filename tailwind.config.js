@@ -12,7 +12,7 @@ module.exports = {
     extend: {},
     screens: {
       xs: '475px',
-      mobileMenu: '1200px',
+      mobileMenu: '1000px',
       ...defaultTheme.screens,
       xl2: '1380px',
       xl3: '1500px',

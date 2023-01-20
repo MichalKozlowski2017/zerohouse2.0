@@ -66,7 +66,8 @@ const Header = ({ pages }: Pages) => {
       <header
         className={`fixed top-0 z-30 inline-flex h-[70px] w-full max-w-[1920px] items-center justify-between px-4 text-base uppercase transition-all duration-500 md:h-[124px] 
           md:px-9
-          ${small || isOpen ? 'bg-[#F8F8F8] md:h-[70px]' : ''}
+          ${router.pathname != '/' || small || isOpen ? 'bg-[#F8F8F8]' : ''}
+          ${small || isOpen ? 'md:h-[70px]' : ''}
         `}
       >
         <div>
@@ -105,8 +106,8 @@ const Header = ({ pages }: Pages) => {
       <AnimatePresence>
         {isOpen ? (
           <div
-            className={`fixed top-[70px] z-20 h-auto w-[100%] overflow-visible md:top-[124px] mobileMenu:hidden
-          ${small ? 'md:top-[70px]' : 'md:top-[124px]'}
+            className={`fixed top-[70px] z-20 h-auto w-[100%] overflow-visible mobileMenu:hidden
+          
           `}
           >
             <motion.div
