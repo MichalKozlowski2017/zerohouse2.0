@@ -53,8 +53,9 @@ const SliderVideo = ({ video, content }) => {
         width="100%"
         height="100vh"
         muted
-        autoPlay
+        playsInline
         loop
+        autoPlay
         className="absolute top-0 left-0 block h-full w-full object-cover"
       >
         <source src={getUrlFromId(video.asset._ref)} type="video/mp4" />

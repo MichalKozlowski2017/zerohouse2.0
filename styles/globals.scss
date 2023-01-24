@@ -4,8 +4,27 @@
 
 
 
-.headerSlider-active {
-  background-color: #a6a6a6;
+
+
+.slider-pagination {
+  &--elem {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #fff;
+    }
+
+    &.headerSlider-active {
+      &:after {
+        background-color: #a6a6a6;
+      }
+
+    }
+  }
 }
 
 .iconsSlider-active {

@@ -43,10 +43,10 @@ const HeaderSlider = ({ content }) => {
         effect="fade"
         spaceBetween={0}
         slidesPerView={1}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         onInit={() => {
           document
             .querySelectorAll('.slider-pagination div')[0]
@@ -81,17 +81,17 @@ const HeaderSlider = ({ content }) => {
           }
         })}
       </Swiper>
-      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-50 h-[2px]">
+      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-50 h-[10px]">
         {content?.map((slide: headerSlide, index: number) => (
           <div
-            className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer bg-white transition-colors"
+            className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer transition-colors"
             key={slide._key}
             onClick={() => swiperRef.current?.slideTo(index)}
           ></div>
         ))}
       </div>
 
-      <div className=" absolute bottom-[60px] left-1/2  z-10 -translate-x-1/2 flex-col items-center justify-center sm:block">
+      <div className=" absolute bottom-[60px] left-1/2 z-10 -translate-x-1/2 flex-col items-center justify-center sm:block">
         <div>
           <Image
             src="/assets/images/scroll-icon.svg"
