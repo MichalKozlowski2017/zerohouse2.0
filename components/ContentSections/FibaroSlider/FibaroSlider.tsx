@@ -24,7 +24,7 @@ const FibaroSlider = (block: Block) => {
         scaleX: 1,
         opacity: 1,
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
@@ -38,13 +38,13 @@ const FibaroSlider = (block: Block) => {
         opacity: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.3 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
-        x: '15%',
+        x: '5%',
       },
     },
     text: {
@@ -52,13 +52,13 @@ const FibaroSlider = (block: Block) => {
         opacity: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
-        x: '-15%',
+        x: '-5%',
       },
     },
   };
@@ -115,6 +115,7 @@ const FibaroSlider = (block: Block) => {
         variants={animations.container}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <div className="flex w-full justify-center bg-white py-[20px] md:hidden md:w-1/2">
           <Image
@@ -155,6 +156,7 @@ const FibaroSlider = (block: Block) => {
                 variants={animations.text}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <div className="hidden  py-[20px] md:block md:w-1/2">
                   <Image
@@ -183,6 +185,7 @@ const FibaroSlider = (block: Block) => {
                 variants={animations.image}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <Image
                   src={urlFor(image).url()}

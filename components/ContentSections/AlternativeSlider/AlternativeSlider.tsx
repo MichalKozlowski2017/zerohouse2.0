@@ -27,14 +27,14 @@ const AlternativeSlider = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
-          ease: 'circOut',
+          default: { duration: 0.7 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
     image: {
@@ -43,14 +43,14 @@ const AlternativeSlider = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
-          ease: 'circOut',
+          default: { duration: 0.7 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
   };
@@ -118,6 +118,7 @@ const AlternativeSlider = (block: Block) => {
         variants={animations.text}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <Swiper
           onSwiper={(swiper) => {
@@ -163,6 +164,7 @@ const AlternativeSlider = (block: Block) => {
         variants={animations.image}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <div className="relative ml-auto w-full md:mt-[-15vw] md:w-[60%] lg:mt-[-9vw] xl:mt-[-10vw] xl:w-[65%] xl3:mt-[-233px]">
           <Swiper

@@ -24,14 +24,14 @@ const IconsSlider = (block: Block) => {
         x: '0',
         transition: {
           staggerChildren: 0.2,
-          delayChildren: 0.8,
-          default: { duration: 1 },
+          delayChildren: 0.5,
+          default: { duration: 0.6 },
           ease: 'inOut',
         },
       },
       hidden: {
         opacity: 0,
-        x: '20%',
+        x: '5%',
       },
     },
 
@@ -65,6 +65,7 @@ const IconsSlider = (block: Block) => {
       variants={animations.container}
       initial="hidden"
       whileInView="show"
+      viewport={{ once: true }}
     >
       <div
         className="iconsSlider-pagination relative flex justify-around bg-white px-[40px] py-[80px] 

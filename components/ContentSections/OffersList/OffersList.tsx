@@ -12,8 +12,8 @@ const OffersList = ({ offers }) => {
         scale: 1,
         opacity: 1,
         transition: {
-          default: { duration: 1 },
-          ease: 'circOut',
+          default: { duration: 0.6 },
+          ease: 'circIn',
         },
       },
       hidden: {
@@ -32,6 +32,7 @@ const OffersList = ({ offers }) => {
             variants={animations.offers}
             initial="hidden"
             whileInView="show"
+            viewport={{ once: true }}
           >
             <Link href={`/oferta-deweloperska/${offer.slug.current}`}>
               <div className="p-[20px] sm:p-[40px]">

@@ -42,14 +42,14 @@ const Gallery = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
     left: {
@@ -58,14 +58,14 @@ const Gallery = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
     miniatures: {
@@ -74,7 +74,7 @@ const Gallery = (block: Block) => {
         transition: {
           staggerChildren: 0.1,
           delayChildren: 0.2,
-          default: { duration: 0.5 },
+          default: { duration: 0.3 },
           ease: 'circOut',
         },
       },
@@ -87,7 +87,7 @@ const Gallery = (block: Block) => {
         scale: 1,
         opacity: 1,
         transition: {
-          default: { duration: 0.2 },
+          default: { duration: 0.15 },
           ease: 'circOut',
         },
       },
@@ -104,6 +104,7 @@ const Gallery = (block: Block) => {
         variants={animations.right}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <h3 className="pb-[30px] text-[26px] text-[#2c2c2c] md:text-[25px] xl:text-[34px]">
           Galeria
@@ -119,6 +120,7 @@ const Gallery = (block: Block) => {
           variants={animations.miniatures}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           {block.content?.map((image: Block['image'], index: number) => (
             <motion.div

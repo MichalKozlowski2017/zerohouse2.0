@@ -29,14 +29,14 @@ const HeaderSimple = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
-          ease: 'circOut',
+          default: { duration: 0.7 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
     image: {
@@ -45,14 +45,14 @@ const HeaderSimple = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
-          ease: 'circOut',
+          default: { duration: 0.7 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
   };
@@ -68,6 +68,7 @@ const HeaderSimple = (block: Block) => {
           variants={animations.image}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <Image
             src={urlFor(block.image).url()}
@@ -95,6 +96,7 @@ const HeaderSimple = (block: Block) => {
             variants={animations.text}
             whileInView="show"
             initial="hidden"
+            viewport={{ once: true }}
           >
             <PortableText
               value={block.content}
@@ -116,6 +118,7 @@ const HeaderSimple = (block: Block) => {
             variants={animations.text}
             whileInView="show"
             initial="hidden"
+            viewport={{ once: true }}
           >
             <PortableText
               value={block.content}

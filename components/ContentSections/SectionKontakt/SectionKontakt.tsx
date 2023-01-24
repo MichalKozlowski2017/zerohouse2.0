@@ -16,14 +16,14 @@ const SectionKontakt = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
-          ease: 'circOut',
+          default: { duration: 0.6 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
     left: {
@@ -32,14 +32,14 @@ const SectionKontakt = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
-          ease: 'circOut',
+          default: { duration: 0.6 },
+          ease: 'circIn',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
   };
@@ -104,6 +104,7 @@ const SectionKontakt = (block: Block) => {
           variants={animations.left}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <Image
             src={urlFor(block.image).url()}
@@ -135,6 +136,7 @@ const SectionKontakt = (block: Block) => {
           variants={animations.right}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <PortableText
             value={block.content}
@@ -171,6 +173,7 @@ const SectionKontakt = (block: Block) => {
           variants={animations.left}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <PortableText
             value={block.content}
@@ -184,6 +187,7 @@ const SectionKontakt = (block: Block) => {
           variants={animations.right}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
         >
           <Image
             src={urlFor(block.image).url()}

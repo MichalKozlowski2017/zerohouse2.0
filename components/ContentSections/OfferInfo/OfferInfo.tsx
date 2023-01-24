@@ -18,7 +18,7 @@ const OfferInfo = ({ offerInfo }) => {
         y: '0',
         opacity: 1,
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
@@ -32,8 +32,8 @@ const OfferInfo = ({ offerInfo }) => {
         opacity: 1,
         transition: {
           staggerChildren: 0.2,
-          delayChildren: 0.8,
-          default: { duration: 0.5 },
+          delayChildren: 0.2,
+          default: { duration: 0.3 },
           ease: 'circOut',
         },
       },
@@ -46,7 +46,7 @@ const OfferInfo = ({ offerInfo }) => {
         scale: 1,
         opacity: 1,
         transition: {
-          default: { duration: 0.7 },
+          default: { duration: 0.2 },
         },
       },
       hidden: {
@@ -60,14 +60,14 @@ const OfferInfo = ({ offerInfo }) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
     left: {
@@ -76,14 +76,14 @@ const OfferInfo = ({ offerInfo }) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
   };
@@ -237,6 +237,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.left}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <Image
                   src={urlFor(level.image).url()}
@@ -256,6 +257,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.right}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <h4 className="mb-[40px] text-[16px] font-bold">
                   {level.title}
@@ -292,6 +294,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.left}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <h4 className="mb-[40px] text-[16px] font-bold">
                   {level.title}
@@ -322,6 +325,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.right}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true }}
               >
                 <Image
                   src={urlFor(level.image).url()}

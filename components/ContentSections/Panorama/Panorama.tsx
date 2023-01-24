@@ -80,14 +80,14 @@ const Panorama = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '10%',
+        x: '5%',
       },
     },
     left: {
@@ -96,14 +96,14 @@ const Panorama = (block: Block) => {
         scale: 1,
         x: '0',
         transition: {
-          default: { duration: 1.4 },
+          default: { duration: 0.6 },
           ease: 'circOut',
         },
       },
       hidden: {
         opacity: 0,
         scale: 0.9,
-        x: '-10%',
+        x: '-5%',
       },
     },
   };
@@ -189,6 +189,7 @@ const Panorama = (block: Block) => {
         variants={animations.left}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <PortableText
           value={block.content}
@@ -202,6 +203,7 @@ const Panorama = (block: Block) => {
         variants={animations.right}
         initial="hidden"
         whileInView="show"
+        viewport={{ once: true }}
       >
         <div className="relative h-[400px] max-h-[730px] w-full md:h-[600px] xl:h-[730px]">
           <div className="absolute top-[20px] right-[20px] z-10">
