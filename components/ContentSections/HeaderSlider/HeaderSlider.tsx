@@ -81,7 +81,7 @@ const HeaderSlider = ({ content }) => {
           }
         })}
       </Swiper>
-      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-50 h-[10px]">
+      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-10 h-[10px]">
         {content?.map((slide: headerSlide, index: number) => (
           <div
             className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer transition-colors"
