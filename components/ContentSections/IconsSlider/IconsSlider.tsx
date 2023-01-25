@@ -61,7 +61,7 @@ const IconsSlider = (block: Block) => {
   };
   return (
     <motion.section
-      className="relative items-stretch justify-end overflow-hidden bg-[#F8F8F8] pb-[75px] md:flex"
+      className="relative items-stretch justify-end overflow-hidden bg-[#F8F8F8] pb-[75px] md:flex xl3:min-h-[607px]"
       variants={animations.container}
       initial="hidden"
       whileInView="show"

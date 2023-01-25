@@ -64,7 +64,7 @@ const Header = ({ pages }: Pages) => {
   return (
     <>
       <header
-        className={`fixed top-0 z-30 inline-flex h-[70px] w-full max-w-[1920px] items-center justify-between px-4 text-base uppercase transition-all duration-500 md:h-[124px] 
+        className={`fixed top-0 z-30 inline-flex h-[70px] w-full  items-center justify-between px-4 text-base uppercase transition-all duration-500 md:h-[124px] 
           md:px-9
           ${router.pathname != '/' || small || isOpen ? 'bg-[#F8F8F8]' : ''}
           ${small || isOpen ? 'md:h-[70px]' : ''}

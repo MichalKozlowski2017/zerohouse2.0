@@ -158,7 +158,11 @@ const SectionSimple = (block: Block) => {
             alt={block.image.alt}
             width={1024}
             height={1024 / ratio}
-            style={{ objectFit: 'contain' }}
+            style={{
+              objectFit: 'contain',
+              maxHeight: '960px',
+              objectPosition: 'left top',
+            }}
             onLoadingComplete={({ naturalWidth, naturalHeight }) =>
               setRatio(naturalWidth / naturalHeight)
             }
@@ -169,6 +173,7 @@ const SectionSimple = (block: Block) => {
           className="px-[40px] py-[40px]
           md:w-[60%] md:px-[8vw]
           xl:w-[70%] xl:px-[12vw]
+          
         "
           variants={animations.text}
           initial="hidden"

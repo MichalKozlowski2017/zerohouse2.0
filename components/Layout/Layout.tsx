@@ -19,7 +19,7 @@ type Props = {
 const Layout = ({ children, pages, footer }: Props) => {
   return (
     <main
-      className={`relative mx-auto max-w-[1920px] pt-[70px] md:pt-[124px] ${roboto.className} overflow-hidden bg-[#F8F8F8]`}
+      className={`relative mx-auto max-w-full pt-[70px] md:pt-[124px] ${roboto.className} overflow-hidden bg-[#F8F8F8]`}
     >
       <Header pages={pages} />
       {children}
