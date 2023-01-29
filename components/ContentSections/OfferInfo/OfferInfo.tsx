@@ -237,7 +237,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.left}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
               >
                 <Image
                   src={urlFor(level.image).url()}
@@ -257,7 +257,7 @@ const OfferInfo = ({ offerInfo }) => {
                 variants={animations.right}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
               >
                 <h4 className="mb-[40px] text-[16px] font-bold">
                   {level.title}
