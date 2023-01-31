@@ -94,7 +94,6 @@ const OfferInfo = ({ offerInfo }) => {
         transition: {
           default: { duration: 0.6 },
           ease: 'circOut',
-          staggerChildren: 0.5,
         },
       },
       hidden: {
@@ -242,25 +241,21 @@ const OfferInfo = ({ offerInfo }) => {
       </motion.div>
 
       {/* Pomieszczenia */}
-      <motion.div
-        className="mx-auto"
-        variants={animations.header}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
+      <div className="mx-auto">
         {offerInfo.levels?.map((level, index: number) => {
           return index % 2 === 0 ? (
-            <div
+            <motion.div
               key={uuidv4()}
               className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
+              variants={animations.left}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
               <div
-                className={`relative mx-auto w-[70%] ${
-                  level.bigImage ? 'cursor-pointer' : ''
-                }`}
+                className="relative mx-auto w-[70%] cursor-pointer"
                 onClick={() => {
-                  level.bigImage && handleSliderShow(index);
+                  handleSliderShow(index);
                 }}
               >
                 <Image
@@ -301,11 +296,15 @@ const OfferInfo = ({ offerInfo }) => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ) : (
-            <div
+            <motion.div
               key={uuidv4()}
               className="relative mx-auto grid grid-cols-1 items-center md:grid-cols-2"
+              variants={animations.right}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
               <div className="ml-auto w-full p-[40px] md:max-w-[450px] lg:px-0">
                 <h4 className="mb-[40px] text-[16px] font-bold">
@@ -350,14 +349,14 @@ const OfferInfo = ({ offerInfo }) => {
                   className="lg:block"
                 />
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </motion.div>
+      </div>
       <AnimatePresence>
         {sliderShow && (
           <motion.div
-            className={` fixed top-0 left-0 z-50 h-full w-full bg-black md:h-full`}
+            className={` fixed top-0 left-0 z-50 h-full w-full bg-white md:h-full`}
             initial={{ opacity: 0, y: '100%' }}
             animate={{ opacity: 1, y: '0' }}
             exit={{ opacity: 0, y: '100%' }}
@@ -379,7 +378,7 @@ const OfferInfo = ({ offerInfo }) => {
               }}
             />
             <Swiper
-              loop={true}
+              loop={false}
               autoHeight={false}
               spaceBetween={0}
               slidesPerView={1}
@@ -390,12 +389,9 @@ const OfferInfo = ({ offerInfo }) => {
                 setMySwiper(swiper);
               }}
             >
-              {offerInfo.levels?.map(({ bigImage, title }: Block) => (
+              {offerInfo.levels?.map(({ bigImage }: Block) => (
                 <SwiperSlide key={bigImage._key} className="my-auto">
-                  <div className="relative h-[100vh] w-full">
-                    <h3 className="absolute bg-white p-[20px] text-[20px] font-bold">
-                      {title}
-                    </h3>
+                  <div className="relative h-[300px] w-full sm:h-[450px] md:h-[100vh]">
                     <Image
                       src={urlFor(bigImage).url()}
                       alt={bigImage.alt}

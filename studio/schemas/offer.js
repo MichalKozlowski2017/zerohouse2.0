@@ -139,6 +139,22 @@ export default {
                   ],
                 },
                 {
+                  name: 'bigImage',
+                  title: 'Big Image',
+                  type: 'image',
+                  validation: (Rule) => Rule.required(),
+                  options: {
+                    hotspot: true,
+                  },
+                  fields: [
+                    {
+                      name: 'alt',
+                      type: 'string',
+                      title: 'Alt',
+                    },
+                  ],
+                },
+                {
                   name: 'rooms',
                   title: 'Pomieszczenia',
                   type: 'table', // Specify 'table' type

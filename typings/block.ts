@@ -7,6 +7,11 @@ export interface Block {
     alt: string;
     asset: object;
   };
+  bigImage: {
+    _key: string;
+    alt: string;
+    asset: object;
+  };
   content: [];
   imageSize: string;
   imagePosition: string;
