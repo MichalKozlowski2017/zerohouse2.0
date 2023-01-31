@@ -385,6 +385,7 @@ const OfferInfo = ({ offerInfo }) => {
               slidesPerView={1}
               initialSlide={startSlide}
               speed={1000}
+              allowTouchMove={false}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
                 setMySwiper(swiper);
