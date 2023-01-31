@@ -15,7 +15,7 @@ export default {
       of: [
         {
           title: 'Icons Slide',
-          name: 'iconsSlide',
+          name: 'sectionSimple',
           type: 'document',
           fields: [
             {

@@ -70,7 +70,7 @@ const Packages = (block: Block) => {
       </h2>
 
       <motion.div
-        className="relative mt-[-140px] hidden md:absolute md:bottom-[300px] md:z-20 md:block md:w-[50%] lg:bottom-[350px] lg:mt-[40px] xl:bottom-[660px]"
+        className="relative mt-[-140px] hidden md:absolute md:bottom-[300px] md:z-10 md:block md:w-[50%] lg:bottom-[350px] lg:mt-[40px] xl:bottom-[660px]"
         variants={animations.left}
         initial="hidden"
         whileInView="show"
