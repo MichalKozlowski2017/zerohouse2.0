@@ -2,6 +2,7 @@ export interface Block {
   _id: string;
   _type: string;
   name: string;
+  title: string;
   image: {
     _key: string;
     alt: string;
