@@ -371,7 +371,7 @@ const OfferInfo = ({ offerInfo }) => {
             }}
           >
             <SlClose
-              className="absolute right-8 top-8 z-10 block cursor-pointer bg-white/75 p-[10px]"
+              className="absolute right-0 top-0 z-10 block cursor-pointer bg-white/75 p-[13px]"
               color="#2c2c2c"
               size={60}
               onClick={() => {
@@ -394,7 +394,7 @@ const OfferInfo = ({ offerInfo }) => {
               {offerInfo.levels?.map(({ bigImage, title }: Block) => (
                 <SwiperSlide key={bigImage._key} className="my-auto">
                   <div className="relative h-[100vh] w-full">
-                    <h3 className="absolute bg-white p-[20px] text-[20px] font-bold">
+                    <h3 className="absolute z-10 bg-white p-[15px] text-[20px] font-bold ">
                       {title}
                     </h3>
                     <Image
@@ -409,7 +409,7 @@ const OfferInfo = ({ offerInfo }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="z-10 px-[40px] py-[20px] md:absolute md:bottom-0 md:left-1/2 md:w-full md:translate-x-[-50%] md:bg-white/75">
+            <div className="absolute bottom-0 left-1/2 z-10 w-full translate-x-[-50%] bg-white/75 px-[40px] py-[20px]">
               <Arrows swiper={mySwiper} />
             </div>
           </motion.div>
