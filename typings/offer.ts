@@ -6,6 +6,7 @@ export interface Offer {
     asset: object;
   };
   title: string;
+  type: string;
   slug: {
     current: string;
   };

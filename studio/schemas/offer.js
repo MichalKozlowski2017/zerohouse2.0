@@ -15,7 +15,20 @@ export default {
       options: {
         source: 'title',
         maxLength: 200, // will be ignored if slugify is set
-        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').replace('|', '').slice(0, 200),
+      },
+    },
+    {
+      title: 'Type',
+      name: 'type',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          {title: 'Oferta deweloperska', value: 'dev'},
+          {title: 'Oferta projektowa', value: 'project'},
+        ],
+        layout: 'radio',
       },
     },
     {
@@ -142,7 +155,6 @@ export default {
                   name: 'bigImage',
                   title: 'Big Image',
                   type: 'image',
-                  validation: (Rule) => Rule.required(),
                   options: {
                     hotspot: true,
                   },

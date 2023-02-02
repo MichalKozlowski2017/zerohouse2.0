@@ -37,9 +37,13 @@ const ContentWrapper = ({ content, offerInfo, offers }) => {
         } else if (block._type === 'offerInfo') {
           return <OfferInfo offerInfo={offerInfo} key={block._id} />;
         } else if (block._type === 'offersList') {
-          return <OffersList offers={offers} key={block._id} />;
+          return (
+            <OffersList offers={offers} type={block.type} key={block._id} />
+          );
         } else if (block._type === 'offersSlider') {
-          return <OffersSlider offers={offers} key={block._id} />;
+          return (
+            <OffersSlider offers={offers} type={block.type} key={block._id} />
+          );
         } else if (block._type === 'packages') {
           return <Packages {...block} key={block._id} />;
         } else if (block._type === 'gallery') {

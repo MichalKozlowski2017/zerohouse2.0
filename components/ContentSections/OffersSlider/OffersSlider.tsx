@@ -5,14 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper';
-import SwiperCore, { EffectFade, Autoplay } from 'swiper';
+import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Arrows from '@components/Arrows/Arrows';
 import { Offer } from '@typings/offer';
 import { motion } from 'framer-motion';
 
-const OffersSlider = ({ offers }) => {
+const OffersSlider = ({ offers, type }) => {
   const [mySwiper, setMySwiper] = useState({});
   const [mySwiper2, setMySwiper2] = useState(null);
   SwiperCore.use([Autoplay]);
@@ -103,75 +103,79 @@ const OffersSlider = ({ offers }) => {
             loop={true}
             allowTouchMove={false}
           >
-            {offers?.map((offer: Offer) => (
-              <SwiperSlide key={uuidv4()}>
-                <div className="bg-white px-[40px] pt-[40px]">
-                  {offer.offerInfo.estate.length > 0 && (
-                    <h3 className="mb-[30px] text-[25px] xl3:text-[34px]">
-                      {offer.offerInfo.estate}
-                    </h3>
-                  )}
-                  <p className="max-w-[360px] text-[18px] leading-[38px] xl3:text-[21px]">
-                    Standard deweloperski<br></br>
-                    {(() => {
-                      if (offer.offerInfo.features.bedrooms > 0) {
-                        return offer.offerInfo.features.bedrooms === 1 ? (
-                          <span>
-                            {offer.offerInfo.features.bedrooms} sypialnia
-                          </span>
-                        ) : (
-                          <span>
-                            {offer.offerInfo.features.bedrooms} sypialnie
-                          </span>
-                        );
-                      }
-                    })()}
-                    {(() => {
-                      if (offer.offerInfo.features.bathrooms > 0) {
-                        return offer.offerInfo.features.bathrooms === 1 ? (
-                          <span>
-                            , {offer.offerInfo.features.bathrooms} łazienka
-                          </span>
-                        ) : (
-                          <span>
-                            , {offer.offerInfo.features.bathrooms} łazienki
-                          </span>
-                        );
-                      }
-                    })()}
-                    {offer.offerInfo.features.garden > 0 && (
-                      <span>
-                        {' '}
-                        | ogród o powierzchni {offer.offerInfo.features.garden}m
-                        <sup>2</sup>
-                      </span>
-                    )}
-                    {(() => {
-                      if (offer.offerInfo.features.parking > 0) {
-                        return offer.offerInfo.features.parking === 1 ? (
+            {offers?.map((offer: Offer) => {
+              return (
+                (offer.type === type || type === 'all') && (
+                  <SwiperSlide key={uuidv4()}>
+                    <div className="bg-white px-[40px] pt-[40px]">
+                      {offer.offerInfo.estate.length > 0 && (
+                        <h3 className="mb-[30px] text-[25px] xl3:text-[34px]">
+                          {offer.offerInfo.estate}
+                        </h3>
+                      )}
+                      <p className="max-w-[360px] text-[18px] leading-[38px] xl3:text-[21px]">
+                        Standard deweloperski<br></br>
+                        {(() => {
+                          if (offer.offerInfo.features.bedrooms > 0) {
+                            return offer.offerInfo.features.bedrooms === 1 ? (
+                              <span>
+                                {offer.offerInfo.features.bedrooms} sypialnia
+                              </span>
+                            ) : (
+                              <span>
+                                {offer.offerInfo.features.bedrooms} sypialnie
+                              </span>
+                            );
+                          }
+                        })()}
+                        {(() => {
+                          if (offer.offerInfo.features.bathrooms > 0) {
+                            return offer.offerInfo.features.bathrooms === 1 ? (
+                              <span>
+                                , {offer.offerInfo.features.bathrooms} łazienka
+                              </span>
+                            ) : (
+                              <span>
+                                , {offer.offerInfo.features.bathrooms} łazienki
+                              </span>
+                            );
+                          }
+                        })()}
+                        {offer.offerInfo.features.garden > 0 && (
                           <span>
                             {' '}
-                            | {offer.offerInfo.features.parking} miejsce
-                            parkingowe
+                            | ogród o powierzchni{' '}
+                            {offer.offerInfo.features.garden}m<sup>2</sup>
                           </span>
-                        ) : (
-                          <span>
-                            {' '}
-                            | {offer.offerInfo.features.parking} miejsca
-                            parkingowe
-                          </span>
-                        );
-                      }
-                    })()}
-                  </p>
-                  <Link href={`/oferta-deweloperska/${offer.slug.current}`}>
-                    <button className="relative my-6 inline-block max-w-[200px] cursor-pointer whitespace-nowrap border-2 border-[#000] px-[40px] py-[15px] text-center text-[13px] font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
-                      Dowiedz się więcej
-                    </button>
-                  </Link>
-                </div>
-              </SwiperSlide>
-            ))}
+                        )}
+                        {(() => {
+                          if (offer.offerInfo.features.parking > 0) {
+                            return offer.offerInfo.features.parking === 1 ? (
+                              <span>
+                                {' '}
+                                | {offer.offerInfo.features.parking} miejsce
+                                parkingowe
+                              </span>
+                            ) : (
+                              <span>
+                                {' '}
+                                | {offer.offerInfo.features.parking} miejsca
+                                parkingowe
+                              </span>
+                            );
+                          }
+                        })()}
+                      </p>
+                      <Link href={`/oferta-deweloperska/${offer.slug.current}`}>
+                        <button className="relative my-6 inline-block max-w-[200px] cursor-pointer whitespace-nowrap border-2 border-[#000] px-[40px] py-[15px] text-center text-[13px] font-bold text-[#000] transition hover:bg-[#000] hover:text-white">
+                          Dowiedz się więcej
+                        </button>
+                      </Link>
+                    </div>
+                  </SwiperSlide>
+                )
+              );
+            })}
           </Swiper>
         </motion.div>
 
@@ -203,18 +207,22 @@ const OffersSlider = ({ offers }) => {
                 mySwiper2?.slideToLoop(swiperRef.current?.realIndex);
             }}
           >
-            {offers?.map(({ image }) => (
-              <SwiperSlide key={uuidv4()} className="">
-                <div className=" h-[300px] sm:h-[400px] xl:h-[450px] xl3:h-[569px]">
-                  <Image
-                    src={urlFor(image).url()}
-                    alt={image.alt}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+            {offers?.map(({ image, type }) => {
+              return (
+                (type === type || type === 'all') && (
+                  <SwiperSlide key={uuidv4()} className="">
+                    <div className=" h-[300px] sm:h-[400px] xl:h-[450px] xl3:h-[569px]">
+                      <Image
+                        src={urlFor(image).url()}
+                        alt={image.alt}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  </SwiperSlide>
+                )
+              );
+            })}
           </Swiper>
           <div className="relative z-10 hidden px-[40px] pb-[20px] lg:mt-[20px] lg:block lg:px-0">
             <Arrows swiper={mySwiper} />
