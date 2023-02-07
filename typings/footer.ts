@@ -1,6 +1,6 @@
 export interface FooterType {
-  address: string;
-  kontakt: string;
+  address: [];
+  kontakt: [];
   logos: [
     {
       name: string;

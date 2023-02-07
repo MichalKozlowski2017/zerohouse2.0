@@ -3,6 +3,7 @@ import React from 'react';
 import { urlFor } from '@lib/sanity';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PortableText } from '@portabletext/react';
 import {
   SlSocialYoutube,
   SlSocialFacebook,
@@ -12,6 +13,100 @@ import {
 import { motion } from 'framer-motion';
 
 const Footer = (footer: FooterType) => {
+  const myPortableTextComponentsAddress = {
+    block: {
+      h5: ({ children }) => {
+        return (
+          <h5 className="footer-adres relative mb-[20px] font-semibold uppercase">
+            <Image
+              src="/assets/images/pin.svg"
+              height={24}
+              width={18}
+              alt="Adres Inwestycji"
+              className="absolute left-[-30px] hidden lg:block"
+            />
+            {children}
+          </h5>
+        );
+      },
+      p: ({ children }) => <p>{children}</p>,
+    },
+
+    marks: {
+      link: ({ value, children }) => {
+        const target = (value?.href || '').startsWith('http')
+          ? '_blank'
+          : undefined;
+        const rel = target === '_blank' ? 'noindex nofollow' : undefined;
+
+        if ((value?.href || '').startsWith('http')) {
+          return (
+            <span className="cursor-pointer font-bold">
+              <a href={value?.href} target={target} rel={rel}>
+                <span>{children}</span>
+              </a>
+            </span>
+          );
+        } else {
+          return (
+            <span className="cursor-pointer font-bold">
+              <Link href={value?.href} target={target} rel={rel}>
+                <span>{children}</span>
+              </Link>
+            </span>
+          );
+        }
+      },
+    },
+  };
+
+  const myPortableTextComponentsKontakt = {
+    block: {
+      h5: ({ children }) => {
+        return (
+          <h5 className="footer-adres relative mb-[20px] font-semibold uppercase">
+            <Image
+              src="/assets/images/person.svg"
+              height={24}
+              width={18}
+              alt="Adres Inwestycji"
+              className="absolute left-[-30px] hidden lg:block"
+            />
+            {children}
+          </h5>
+        );
+      },
+      p: ({ children }) => <p>{children}</p>,
+    },
+
+    marks: {
+      link: ({ value, children }) => {
+        const target = (value?.href || '').startsWith('http')
+          ? '_blank'
+          : undefined;
+        const rel = target === '_blank' ? 'noindex nofollow' : undefined;
+
+        if ((value?.href || '').startsWith('http')) {
+          return (
+            <span className="cursor-pointer font-bold">
+              <a href={value?.href} target={target} rel={rel}>
+                <span>{children}</span>
+              </a>
+            </span>
+          );
+        } else {
+          return (
+            <span className="cursor-pointer font-bold">
+              <Link href={value?.href} target={target} rel={rel}>
+                <span>{children}</span>
+              </Link>
+            </span>
+          );
+        }
+      },
+    },
+  };
+
   const animations = {
     logos: {
       show: {
@@ -107,38 +202,20 @@ const Footer = (footer: FooterType) => {
       >
         <div className="lg:flex">
           <div className="mr-[150px] pb-[40px] lg:mr-[14vw] xl3:mr-[300px]">
-            <h5 className="footer-adres relative mb-[20px] font-semibold uppercase">
-              <Image
-                src="/assets/images/pin.svg"
-                height={24}
-                width={18}
-                alt="Adres Inwestycji"
-                className="absolute left-[-30px] hidden lg:block"
-              />
-              Adres Inwestycji
-            </h5>
-            <p>
-              Jeżów Sudecki
-              <br />
-              ul. Południowa 100
-            </p>
+            <PortableText
+              value={footer.address}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              components={myPortableTextComponentsAddress}
+            />
           </div>
           <div className="pb-[40px]">
-            <h5 className="footer-kontakt relative mb-[20px] font-semibold uppercase">
-              <Image
-                src="/assets/images/person.svg"
-                height={22}
-                width={22}
-                alt="Kontakt"
-                className="absolute left-[-33px] hidden lg:block"
-              />
-              Kontakt
-            </h5>
-            <p>
-              Wojciech Nowak: +48 505 765 502
-              <br />
-              Paweł Suchecki: + 48 600 227 515
-            </p>
+            <PortableText
+              value={footer.kontakt}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              components={myPortableTextComponentsKontakt}
+            />
           </div>
         </div>
         <div className="relative flex items-center justify-start">

@@ -68,5 +68,35 @@ export default {
       name: 'smInstagram',
       type: 'url',
     },
+    {
+      name: 'address',
+      title: 'Address',
+      type: 'array',
+      validation: (Rule) => Rule.required(),
+      of: [
+        {
+          type: 'block',
+          styles: [
+            {title: 'Title', value: 'h5'},
+            {title: 'Paragraph', value: 'p'},
+          ],
+        },
+      ],
+    },
+    {
+      name: 'kontakt',
+      title: 'Kontakt',
+      type: 'array',
+      validation: (Rule) => Rule.required(),
+      of: [
+        {
+          type: 'block',
+          styles: [
+            {title: 'Title', value: 'h5'},
+            {title: 'Paragraph', value: 'p'},
+          ],
+        },
+      ],
+    },
   ],
 }
