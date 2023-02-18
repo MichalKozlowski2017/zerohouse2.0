@@ -18,27 +18,15 @@ type Scene = {
   imageSource: string;
 };
 
-type ImageScene = {
-  id: string;
-  alt: string;
-  _key: string;
-  asset: {
-    _ref: string;
-  };
-};
-
 const Panorama = (block: Block) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const [scene, setScene] = useState(block.images[0].alt);
   const [scenes, setScenes] = useState([]);
   const [scenesMenuIsOpen, setScenesMenuIsOpen] = useState(false);
 
   useEffect(() => {
     const tempScenes = [];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    block.images.forEach((image: ImageScene) => {
+
+    block.images.forEach((image) => {
       const tempScene: Scene = {
         autoRotate: -2,
         sceneId: image.id,
