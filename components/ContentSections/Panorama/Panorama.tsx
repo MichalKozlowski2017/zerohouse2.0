@@ -28,7 +28,9 @@ type ImageScene = {
 };
 
 const Panorama = (block: Block) => {
-  const [scene, setScene] = useState('Wnętrze 1');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const [scene, setScene] = useState(block.images[0].alt);
   const [scenes, setScenes] = useState([]);
   const [scenesMenuIsOpen, setScenesMenuIsOpen] = useState(false);
 
