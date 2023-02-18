@@ -37,6 +37,8 @@ const Panorama = (block: Block) => {
   useEffect(() => {
     return () => {
       const tempScenes = [];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       block.images.forEach((image: ImageScene) => {
         const scene: Scene = {
           autoRotate: -2,
