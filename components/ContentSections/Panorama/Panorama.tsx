@@ -35,27 +35,25 @@ const Panorama = (block: Block) => {
   const [scenesMenuIsOpen, setScenesMenuIsOpen] = useState(false);
 
   useEffect(() => {
-    return () => {
-      const tempScenes = [];
+    const tempScenes = [];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    block.images.forEach((image: ImageScene) => {
+      const tempScene: Scene = {
+        autoRotate: -2,
+        sceneId: image.id,
+        title: image.alt,
+        hfov: 110,
+        pitch: -3,
+        yaw: 117,
+        type: 'equirectangular',
+        imageSource: urlFor(image).url(),
+      };
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      block.images.forEach((image: ImageScene) => {
-        const scene: Scene = {
-          autoRotate: -2,
-          sceneId: image.id,
-          title: image.alt,
-          hfov: 110,
-          pitch: -3,
-          yaw: 117,
-          type: 'equirectangular',
-          imageSource: urlFor(image).url(),
-        };
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        tempScenes.push(scene);
-      });
-      setScenes(tempScenes);
-    };
+      tempScenes.push(tempScene);
+    });
+    setScenes(tempScenes);
   }, [block.images]);
 
   const animations = {
@@ -232,7 +230,7 @@ const Panorama = (block: Block) => {
               config={config}
               onPanoramaLoaded={() => {
                 console.log(scenes);
-                scenes.forEach((scene: Scene) => {
+                scenes?.forEach((scene: Scene) => {
                   addScene(scene.sceneId, scene);
                 });
               }}
