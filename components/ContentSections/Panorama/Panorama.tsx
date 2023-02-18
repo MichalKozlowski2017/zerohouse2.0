@@ -199,7 +199,7 @@ const Panorama = (block: Block) => {
             >
               {scene}
             </button>
-            {scenesMenuIsOpen && (
+            {scenesMenuIsOpen && scenes.length > 0 && (
               <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 {block.images?.map((scene) => (
                   <li
@@ -217,25 +217,27 @@ const Panorama = (block: Block) => {
               </motion.ul>
             )}
           </div>
-          <ReactPannellum
-            id="1"
-            sceneId="firstScene"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            imageSource={urlFor(block?.images[0]).url()}
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-            }}
-            config={config}
-            onPanoramaLoaded={() => {
-              console.log(scenes);
-              scenes.forEach((scene: Scene) => {
-                addScene(scene.sceneId, scene);
-              });
-            }}
-          ></ReactPannellum>
+          {scenes.length > 0 && (
+            <ReactPannellum
+              id="1"
+              sceneId="firstScene"
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              imageSource={urlFor(block?.images[0]).url()}
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+              }}
+              config={config}
+              onPanoramaLoaded={() => {
+                console.log(scenes);
+                scenes.forEach((scene: Scene) => {
+                  addScene(scene.sceneId, scene);
+                });
+              }}
+            ></ReactPannellum>
+          )}
         </div>
       </motion.div>
     </section>
