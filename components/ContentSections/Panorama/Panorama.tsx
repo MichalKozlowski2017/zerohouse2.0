@@ -54,7 +54,7 @@ const Panorama = (block: Block) => {
       });
       setScenes(tempScenes);
     };
-  }, []);
+  }, [block.images]);
 
   const animations = {
     right: {
@@ -199,17 +199,17 @@ const Panorama = (block: Block) => {
             </button>
             {scenesMenuIsOpen && (
               <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                {scenes?.map((scene: Scene) => (
+                {block.images?.map((scene) => (
                   <li
                     key={uuidv4()}
-                    value={scene.sceneId}
+                    value={scene.id}
                     onClick={() => {
-                      handleScene(scene.sceneId, scene.title);
+                      handleScene(scene.id, scene.alt);
                       handleScenesMenu();
                     }}
                     className="w-[140px] cursor-pointer bg-white/60 py-[8px] text-center text-[14px] transition-colors hover:bg-white"
                   >
-                    {scene.title}
+                    {scene.alt}
                   </li>
                 ))}
               </motion.ul>
