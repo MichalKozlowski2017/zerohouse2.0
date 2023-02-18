@@ -230,6 +230,7 @@ const Panorama = (block: Block) => {
             }}
             config={config}
             onPanoramaLoaded={() => {
+              console.log(scenes);
               scenes.forEach((scene: Scene) => {
                 addScene(scene.sceneId, scene);
               });
