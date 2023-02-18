@@ -162,6 +162,8 @@ const SectionSimple = (block: Block) => {
               objectFit: 'contain',
               maxHeight: '960px',
               objectPosition: 'left top',
+              width: 'auto',
+              height: 'auto',
             }}
             onLoadingComplete={({ naturalWidth, naturalHeight }) =>
               setRatio(naturalWidth / naturalHeight)

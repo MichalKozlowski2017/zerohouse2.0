@@ -210,13 +210,19 @@ const OffersSlider = ({ offers, type }) => {
             {offers?.map(({ image, type }) => {
               return (
                 (type === type || type === 'all') && (
-                  <SwiperSlide key={uuidv4()} className="">
-                    <div className=" h-[300px] sm:h-[400px] xl:h-[450px] xl3:h-[569px]">
+                  <SwiperSlide key={uuidv4()} className="relative">
+                    <div className="relative h-[300px] sm:h-[400px] xl:h-[450px] xl3:h-[569px]">
                       <Image
                         src={urlFor(image).url()}
                         alt={image.alt}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        priority
+                        style={{
+                          objectFit: 'cover',
+                        }}
+                        sizes="(max-width: 768px) 768px,
+              (max-width: 1200px) 1000px,
+              1600px"
                       />
                     </div>
                   </SwiperSlide>

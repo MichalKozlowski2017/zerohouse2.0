@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@lib/sanity';
@@ -75,13 +75,14 @@ const OffersList = ({ offers, type }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="relative h-[300px] w-full overflow-hidden sm:h-[400px] ">
+                  <div className="relative h-[300px] w-full overflow-hidden sm:h-[400px] lg:h-[20vw] ">
                     <Image
                       src={urlFor(offer.image).url()}
                       alt={offer.image.alt}
                       fill
                       style={{ objectFit: 'cover', width: '100%' }}
                       className="transition-transform duration-1000 ease-in-out group-hover:scale-[1.2]"
+                      sizes="1024px"
                     ></Image>
                   </div>
                 </Link>

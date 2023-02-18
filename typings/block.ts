@@ -4,6 +4,7 @@ export interface Block {
   name: string;
   title: string;
   type: string;
+  images: [];
   image: {
     _key: string;
     alt: string;

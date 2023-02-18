@@ -8,7 +8,11 @@ export interface Page {
   title: string;
   pages: [];
   offers: [];
-  page: object;
+  page: {
+    title: string;
+    excerpt: string;
+    keywords: string;
+  };
   pageContent: object;
   offerInfo: object;
 }

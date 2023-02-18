@@ -158,13 +158,16 @@ const FibaroSlider = (block: Block) => {
                 whileInView="show"
                 viewport={{ once: true }}
               >
-                <div className="hidden  py-[20px] md:block md:w-1/2">
+                <div className="relative hidden  py-[20px] md:block md:w-1/2">
                   <Image
                     src={urlFor(block.image).url()}
                     alt={block.image.alt}
                     width={138}
                     height={45}
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 768px,
+              (max-width: 1200px) 1000px,
+              1600px"
                   />
                 </div>
                 <div className="mb-[40px] xl:hidden">

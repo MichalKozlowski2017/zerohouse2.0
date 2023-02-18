@@ -75,7 +75,13 @@ const HeaderSimple = (block: Block) => {
             alt={block.image.alt}
             width={1425}
             height={1425 / ratio}
-            style={{ objectFit: 'cover', marginLeft: 'auto' }}
+            priority
+            style={{
+              objectFit: 'cover',
+              marginLeft: 'auto',
+              width: 'auto',
+              height: 'auto',
+            }}
             onLoadingComplete={({ naturalWidth, naturalHeight }) =>
               setRatio(naturalWidth / naturalHeight)
             }

@@ -100,6 +100,7 @@ const Packages = (block: Block) => {
                   alt={image.alt}
                   fill
                   style={{ objectFit: 'cover' }}
+                  sizes="1500px"
                 />
               </div>
             </SwiperSlide>
@@ -205,6 +206,7 @@ const Packages = (block: Block) => {
                 alt={image.alt}
                 fill
                 style={{ objectFit: 'cover' }}
+                sizes="1024px"
               />
             </div>
           ))}

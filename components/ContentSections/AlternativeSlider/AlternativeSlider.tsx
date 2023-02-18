@@ -190,6 +190,9 @@ const AlternativeSlider = (block: Block) => {
                     alt={image.alt}
                     fill
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 768px,
+              (max-width: 1200px) 1000px,
+              1600px"
                   />
                 </div>
               </SwiperSlide>

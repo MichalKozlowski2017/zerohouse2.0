@@ -1,77 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPannellum, { addScene, loadScene } from 'react-pannellum';
 import { Block } from '@typings/block';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
+import { urlFor } from '@lib/sanity';
+
+type Scene = {
+  autoRotate: number;
+  sceneId: string;
+  title: string;
+  hfov: number;
+  pitch: number;
+  yaw: number;
+  type: string;
+  imageSource: string;
+};
+
+type ImageScene = {
+  id: string;
+  alt: string;
+  _key: string;
+  asset: {
+    _ref: string;
+  };
+};
 
 const Panorama = (block: Block) => {
   const [scene, setScene] = useState('Wnętrze 1');
+  const [scenes, setScenes] = useState([]);
   const [scenesMenuIsOpen, setScenesMenuIsOpen] = useState(false);
 
-  const scenes = [
-    {
-      autoRotate: -2,
-      sceneId: 'wew_1',
-      title: 'Wnętrze 1',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/wew_1.jpg',
-    },
-    {
-      autoRotate: -2,
-      sceneId: 'wew_2',
-      title: 'Wnętrze 2',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/wew_2.jpg',
-    },
-    {
-      autoRotate: -2,
-      sceneId: 'wew_3',
-      title: 'Wnętrze 3',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/wew_3.jpg',
-    },
-    {
-      autoRotate: -2,
-      sceneId: 'zew_1',
-      title: 'Na zewnątrz 1',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/zew_1.jpg',
-    },
-    {
-      autoRotate: -2,
-      sceneId: 'zew_2',
-      title: 'Na zewnątrz 2',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/zew_2.jpg',
-    },
-    {
-      autoRotate: -2,
-      sceneId: 'zew_3',
-      title: 'Na zewnątrz 3',
-      hfov: 110,
-      pitch: -3,
-      yaw: 117,
-      type: 'equirectangular',
-      imageSource: '/assets/images/zew_3.jpg',
-    },
-  ];
+  useEffect(() => {
+    return () => {
+      const tempScenes = [];
+      block.images.forEach((image: ImageScene) => {
+        const scene: Scene = {
+          autoRotate: -2,
+          sceneId: image.id,
+          title: image.alt,
+          hfov: 110,
+          pitch: -3,
+          yaw: 117,
+          type: 'equirectangular',
+          imageSource: urlFor(image).url(),
+        };
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        tempScenes.push(scene);
+      });
+      setScenes(tempScenes);
+    };
+  }, [block.images]);
 
   const animations = {
     right: {
@@ -216,7 +197,7 @@ const Panorama = (block: Block) => {
             </button>
             {scenesMenuIsOpen && (
               <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                {scenes.map((scene) => (
+                {scenes.map((scene: Scene) => (
                   <li
                     key={uuidv4()}
                     value={scene.sceneId}
@@ -235,7 +216,9 @@ const Panorama = (block: Block) => {
           <ReactPannellum
             id="1"
             sceneId="firstScene"
-            imageSource={scenes[0].imageSource}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            imageSource={urlFor(block?.images[0]).url()}
             style={{
               position: 'relative',
               width: '100%',
@@ -243,7 +226,7 @@ const Panorama = (block: Block) => {
             }}
             config={config}
             onPanoramaLoaded={() => {
-              scenes.forEach((scene) => {
+              scenes.forEach((scene: Scene) => {
                 addScene(scene.sceneId, scene);
               });
             }}
