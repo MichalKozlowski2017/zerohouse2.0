@@ -10,7 +10,7 @@ export default function Home({ page, pageContent, offerInfo, offers }: Page) {
   return (
     <div>
       <Head>
-        <title>Zerohouse - {page.title}</title>
+        <title>{page.title}</title>
         <meta name="description" content={page.excerpt} />
         <meta name="keywords" content={page.keywords} />
         <link rel="icon" href="/favicon.ico" />
