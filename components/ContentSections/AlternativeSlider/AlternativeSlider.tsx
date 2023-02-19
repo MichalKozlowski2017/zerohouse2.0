@@ -110,10 +110,10 @@ const AlternativeSlider = (block: Block) => {
           py-[40px]
           md:left-[13vw] md:mt-[-8vw]
           md:w-[70%] md:px-[40px]
-          lg:left-[15vw] xl:left-[15vw]
+          lg:left-[15vw] lg:mt-[-60px]
+          xl:left-[15vw]
           xl:w-[50%] xl:px-[40px] xl:py-[65px]
           xl3:left-[230px]
-          xl3:mt-[-150px]
           "
         variants={animations.text}
         initial="hidden"
@@ -166,7 +166,7 @@ const AlternativeSlider = (block: Block) => {
         whileInView="show"
         viewport={{ once: true }}
       >
-        <div className="relative ml-auto w-full md:mt-[-15vw] md:w-[60%] lg:mt-[-9vw] xl:mt-[-10vw] xl:w-[65%] xl3:mt-[-233px]">
+        <div className="relative ml-auto w-full md:mt-[-15vw] md:w-[60%] lg:mt-[-9vw] xl:mt-[-10vw] xl:w-[65%] xl3:mt-[-5vw]">
           <Swiper
             onSwiper={(swiper2) => {
               swiperRef2.current = swiper2;

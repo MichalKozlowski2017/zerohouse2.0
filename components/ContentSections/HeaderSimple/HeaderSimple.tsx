@@ -79,8 +79,6 @@ const HeaderSimple = (block: Block) => {
             style={{
               objectFit: 'cover',
               marginLeft: 'auto',
-              width: 'auto',
-              height: 'auto',
             }}
             onLoadingComplete={({ naturalWidth, naturalHeight }) =>
               setRatio(naturalWidth / naturalHeight)

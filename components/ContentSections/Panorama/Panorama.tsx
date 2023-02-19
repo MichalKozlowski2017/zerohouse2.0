@@ -207,8 +207,6 @@ const Panorama = (block: Block) => {
             <ReactPannellum
               id="1"
               sceneId="firstScene"
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
               imageSource={urlFor(block?.images[0]).url()}
               style={{
                 position: 'relative',
