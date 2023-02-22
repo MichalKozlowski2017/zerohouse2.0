@@ -24,6 +24,12 @@ export default {
       ],
     },
     {
+      title: 'Autoplay time',
+      name: 'time',
+      type: 'number',
+      description: 'Czas wyświetlania slajdu podany w milisekundach (1 sekunda = 1000)',
+    },
+    {
       name: 'content',
       title: 'Content',
       type: 'array',

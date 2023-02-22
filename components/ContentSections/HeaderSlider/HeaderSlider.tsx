@@ -44,24 +44,37 @@ const HeaderSlider = ({ content }) => {
         spaceBetween={0}
         slidesPerView={1}
         autoplay={{
-          delay: 5000,
+          delay: content[0].time ? content[0].time : 5000,
           disableOnInteraction: false,
         }}
         onInit={() => {
-          document
-            .querySelectorAll('.slider-pagination div')[0]
-            .classList.add('headerSlider-active');
+          content.length > 1 &&
+            document
+              .querySelectorAll('.slider-pagination div')[0]
+              .classList.add('headerSlider-active');
         }}
         onSlideChange={() => {
-          document.querySelectorAll('.slider-pagination div').forEach((el) => {
-            el.classList.remove('headerSlider-active');
-          });
-          swiperRef.current?.activeIndex != undefined &&
+          const current = swiperRef.current?.activeIndex
+            ? swiperRef.current?.activeIndex
+            : 0;
+          const time = content[current].time ? content[current].time : 5000;
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          swiperRef.current.params.autoplay.delay = time;
+
+          if (content.length > 1) {
             document
               .querySelectorAll('.slider-pagination div')
-              [swiperRef.current?.activeIndex].classList.add(
-                'headerSlider-active'
-              );
+              .forEach((el) => {
+                el.classList.remove('headerSlider-active');
+              });
+            swiperRef.current?.activeIndex != undefined &&
+              document
+                .querySelectorAll('.slider-pagination div')
+                [swiperRef.current?.activeIndex].classList.add(
+                  'headerSlider-active'
+                );
+          }
         }}
       >
         {content?.map((slide: headerSlide) => {
@@ -81,17 +94,19 @@ const HeaderSlider = ({ content }) => {
           }
         })}
       </Swiper>
-      <div className="slider-pagination absolute bottom-[52px] left-[30px] z-10 h-[10px]">
-        {content?.map((slide: headerSlide, index: number) => (
-          <div
-            className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer transition-colors"
-            key={slide._key}
-            onClick={() => swiperRef.current?.slideTo(index)}
-          ></div>
-        ))}
-      </div>
+      {content.length > 1 && (
+        <div className="slider-pagination absolute bottom-[52px] left-[30px] z-10 h-[10px]">
+          {content?.map((slide: headerSlide, index: number) => (
+            <div
+              className="slider-pagination--elem relative mr-[15px] inline-block h-full w-[6vw] cursor-pointer transition-colors"
+              key={slide._key}
+              onClick={() => swiperRef.current?.slideTo(index)}
+            ></div>
+          ))}
+        </div>
+      )}
 
-      <div className=" absolute bottom-[60px] left-1/2 z-10 -translate-x-1/2 flex-col items-center justify-center sm:block">
+      <div className=" absolute bottom-[30px] left-1/2 z-10 -translate-x-1/2 flex-col items-center justify-center sm:bottom-[60px] sm:block">
         <div>
           <Image
             src="/assets/images/scroll-icon.svg"

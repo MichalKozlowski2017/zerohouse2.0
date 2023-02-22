@@ -49,7 +49,7 @@ const SliderImage = ({ image, content }) => {
   };
 
   return (
-    <div className=" relative h-[100vh]">
+    <div className=" relative h-[90vw] xl:h-[100vh]">
       <Image
         priority={true}
         src={urlFor(image).url()}
