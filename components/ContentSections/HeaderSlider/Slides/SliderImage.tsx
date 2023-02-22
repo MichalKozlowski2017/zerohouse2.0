@@ -58,7 +58,7 @@ const SliderImage = ({ image, content }) => {
         style={{ objectFit: 'cover' }}
       />
       <div
-        className="absolute bottom-[25vh] left-1/2 -translate-x-1/2 text-[16px] 
+        className="absolute bottom-[55px] left-1/2 -translate-x-1/2 text-[13px] 
         xs:bottom-[130px]
         xs:block xs:text-[20px]
         sm:bottom-[150px] sm:text-[24px]

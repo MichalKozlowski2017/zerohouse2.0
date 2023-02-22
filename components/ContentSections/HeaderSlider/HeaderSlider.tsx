@@ -106,7 +106,7 @@ const HeaderSlider = ({ content }) => {
         </div>
       )}
 
-      <div className=" absolute bottom-[30px] left-1/2 z-10 -translate-x-1/2 flex-col items-center justify-center sm:bottom-[60px] sm:block">
+      <div className=" absolute bottom-[0] left-1/2 z-10 -translate-x-1/2 scale-50 flex-col items-center justify-center sm:bottom-[60px] sm:block sm:scale-100">
         <div>
           <Image
             src="/assets/images/scroll-icon.svg"
