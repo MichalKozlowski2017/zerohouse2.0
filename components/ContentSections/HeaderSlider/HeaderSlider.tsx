@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type Swiper as SwiperRef } from 'swiper';
@@ -13,6 +13,9 @@ import type { headerSlide } from '@typings/headerSlide';
 const HeaderSlider = ({ content }) => {
   SwiperCore.use([Autoplay]);
   const swiperRef = useRef<SwiperRef>();
+
+  const [active, setActive] = useState(0);
+
   return (
     <motion.div
       className="relative mt-[-124px] w-full"
@@ -62,6 +65,8 @@ const HeaderSlider = ({ content }) => {
           // @ts-ignore
           swiperRef.current.params.autoplay.delay = time;
 
+          setActive(current);
+
           if (content.length > 1) {
             document
               .querySelectorAll('.slider-pagination div')
@@ -77,7 +82,7 @@ const HeaderSlider = ({ content }) => {
           }
         }}
       >
-        {content?.map((slide: headerSlide) => {
+        {content?.map((slide: headerSlide, index: number) => {
           switch (slide._type) {
             case 'sliderImage':
               return (
@@ -88,7 +93,12 @@ const HeaderSlider = ({ content }) => {
             case 'sliderVideo':
               return (
                 <SwiperSlide key={slide._key}>
-                  <SliderVideo {...slide} />
+                  <SliderVideo
+                    video={slide.video}
+                    content={slide.content}
+                    active={index === active}
+                    id={slide._key}
+                  />
                 </SwiperSlide>
               );
           }

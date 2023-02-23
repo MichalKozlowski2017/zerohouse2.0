@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getUrlFromId } from '@lib/sanity';
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 
-const SliderVideo = ({ video, content }) => {
+const SliderVideo = ({ video, content, active, id }) => {
+  useEffect(() => {
+    const video = document.getElementById(id);
+    setTimeout(() => {
+      if (active) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        video.currentTime = 0;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        video.play();
+      } else {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        video.currentTime = 0;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        video.pause();
+      }
+    }, 800);
+  }, [active, id]);
+
   const myPortableTextComponents = {
     block: {
       h2: ({ children }) => (
@@ -50,6 +71,7 @@ const SliderVideo = ({ video, content }) => {
   return (
     <div className=" relative h-[90vw] xl:h-[100vh]">
       <video
+        id={id}
         width="100%"
         height="100%"
         muted
@@ -61,11 +83,12 @@ const SliderVideo = ({ video, content }) => {
         <source src={getUrlFromId(video.asset._ref)} type="video/mp4" />
       </video>
       <div
-        className="absolute bottom-[25vh] left-1/2 -translate-x-1/2 text-[16px] xs:bottom-[25vh]
+        className="absolute bottom-[55px] left-1/2 -translate-x-1/2 text-[13px] 
+        xs:bottom-[130px]
         xs:block xs:text-[20px]
-        sm:bottom-[25vh] sm:text-[24px]
-        md:bottom-[25vh] md:left-[60%] md:text-[25px]
-        lg:bottom-[25vh] lg:left-2/3 lg:text-[30px]
+        sm:bottom-[150px] sm:text-[24px]
+        md:bottom-[170px] md:left-[60%] md:text-[25px]
+        lg:bottom-[200px] lg:left-2/3 lg:text-[30px]
         xl:bottom-[25vh] xl:text-[35px]
         xl3:bottom-[25vh] xl3:text-[40px]
         xl4:bottom-[25vh] xl4:text-[43px]
