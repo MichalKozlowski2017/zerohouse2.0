@@ -14,7 +14,7 @@ import OffersSlider from '@components/ContentSections/OffersSlider/OffersSlider'
 import Packages from '@components/ContentSections/Packages/Packages';
 import Gallery from '@components/ContentSections/Gallery/Gallery';
 
-const ContentWrapper = ({ content, offerInfo, offers }) => {
+const ContentWrapper = ({ content, offerInfo, offers, page }) => {
   return (
     <>
       {content?.map((block: Block) => {
@@ -35,7 +35,9 @@ const ContentWrapper = ({ content, offerInfo, offers }) => {
         } else if (block._type === 'panorama') {
           return <Panorama {...block} key={block._id} />;
         } else if (block._type === 'offerInfo') {
-          return <OfferInfo offerInfo={offerInfo} key={block._id} />;
+          return (
+            <OfferInfo offerInfo={offerInfo} type={page.type} key={block._id} />
+          );
         } else if (block._type === 'offersList') {
           return (
             <OffersList offers={offers} type={block.type} key={block._id} />

@@ -36,7 +36,13 @@ const OffersList = ({ offers, type }) => {
                 whileInView="show"
                 viewport={{ once: true }}
               >
-                <Link href={`/oferta-deweloperska/${offer.slug.current}`}>
+                <Link
+                  href={
+                    offer.type === 'dev'
+                      ? `/oferta-deweloperska/${offer.slug.current}`
+                      : `/oferta-indywidualna/${offer.slug.current}`
+                  }
+                >
                   <div className="p-[20px] sm:p-[40px]">
                     {offer.offerInfo.status == 'available' && (
                       <div className="absolute top-[40px] right-[20px] z-10 rounded-3xl bg-green-700 px-[20px] py-[5px] text-white sm:right-[40px]">
@@ -68,7 +74,11 @@ const OffersList = ({ offers, type }) => {
                         Poznaj ofertę
                       </button>
                       <div className="mt-[20px]  sm:m-0">
-                        <span className="text-[21px]">Cena domu: </span>{' '}
+                        <span className="text-[21px]">
+                          {offer.type === 'dev'
+                            ? 'Cena domu:'
+                            : 'Cena projektu:'}
+                        </span>{' '}
                         <span className="whitespace-nowrap text-[28px] font-bold">
                           {offer.offerInfo.price.toLocaleString('pl-PL')} zł
                         </span>

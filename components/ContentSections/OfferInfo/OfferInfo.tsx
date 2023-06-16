@@ -9,20 +9,18 @@ import Arrows from '@components/Arrows/Arrows';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SlClose } from 'react-icons/sl';
 import { Block } from '@typings/block';
-import { Offer } from '@typings/offer';
 
 type Row = {
   cells: [];
   _key: string;
 };
 
-const OfferInfo = ({ offerInfo }) => {
+const OfferInfo = ({ offerInfo, type }) => {
   const [ratio, setRatio] = useState(16 / 9); // default to 16:9
   const [mySwiper, setMySwiper] = useState({});
   const swiperRef = useRef<SwiperRef>();
   const [sliderShow, setSliderShow] = useState(false);
   const [startSlide, setStartSlide] = useState(1);
-
   const handleSliderShow = (index: number) => {
     setStartSlide(index);
     setSliderShow(!sliderShow);
@@ -142,7 +140,9 @@ const OfferInfo = ({ offerInfo }) => {
         </div>
 
         <div className="mt-[20px] sm:mt-[15px]">
-          <span className="text-[21px]">Cena domu: </span>{' '}
+          <span className="text-[21px]">
+            {type === 'dev' ? 'Cena domu:' : 'Cena projektu:'}
+          </span>{' '}
           <span className="whitespace-nowrap text-[28px] font-bold">
             {offerInfo.price.toLocaleString('pl-PL')} zł
           </span>
