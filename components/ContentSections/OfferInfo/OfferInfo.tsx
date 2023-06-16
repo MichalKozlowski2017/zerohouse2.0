@@ -141,7 +141,9 @@ const OfferInfo = ({ offerInfo, type }) => {
 
         <div className="mt-[20px] sm:mt-[15px]">
           <span className="text-[21px]">
-            {type === 'dev' ? 'Cena domu:' : 'Cena projektu:'}
+            {type === 'dev' || offerInfo.price > 100000
+              ? 'Cena domu:'
+              : 'Cena projektu:'}
           </span>{' '}
           <span className="whitespace-nowrap text-[28px] font-bold">
             {offerInfo.price.toLocaleString('pl-PL')} zł

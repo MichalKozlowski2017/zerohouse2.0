@@ -75,7 +75,8 @@ const OffersList = ({ offers, type }) => {
                       </button>
                       <div className="mt-[20px]  sm:m-0">
                         <span className="text-[21px]">
-                          {offer.type === 'dev'
+                          {offer.type === 'dev' ||
+                          offer.offerInfo.price > 100000
                             ? 'Cena domu:'
                             : 'Cena projektu:'}
                         </span>{' '}
