@@ -8,10 +8,12 @@ export interface Page {
   title: string;
   pages: [];
   offers: [];
+  type: string;
   page: {
     title: string;
     excerpt: string;
     keywords: string;
+    type: string;
   };
   pageContent: object;
   offerInfo: object;

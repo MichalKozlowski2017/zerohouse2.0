@@ -13,8 +13,14 @@ import OffersList from '@components/ContentSections/OffersList/OffersList';
 import OffersSlider from '@components/ContentSections/OffersSlider/OffersSlider';
 import Packages from '@components/ContentSections/Packages/Packages';
 import Gallery from '@components/ContentSections/Gallery/Gallery';
+import { contentWrapper } from '@typings/contentWrapper';
 
-const ContentWrapper = ({ content, offerInfo, offers, page }) => {
+const ContentWrapper = ({
+  content,
+  offerInfo,
+  offers,
+  page,
+}: contentWrapper) => {
   return (
     <>
       {content?.map((block: Block) => {

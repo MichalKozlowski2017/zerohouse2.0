@@ -19,6 +19,7 @@ export default function Home({ page, pageContent, offerInfo, offers }: Page) {
         content={pageContent}
         offerInfo={offerInfo}
         offers={offers}
+        page={page}
       />
     </div>
   );
