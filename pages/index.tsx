@@ -14,6 +14,14 @@ export default function Home({ page, pageContent, offerInfo, offers }: Page) {
         <meta name="description" content={page.excerpt} />
         <meta name="keywords" content={page.keywords} />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="fb35caca-3561-402f-9670-630d7cca5ec5"
+          data-blockingmode="auto"
+          type="text/javascript"
+          async
+        ></script>
       </Head>
       <ContentWrapper
         content={pageContent}
